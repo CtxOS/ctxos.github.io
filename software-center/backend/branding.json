@@ -1,0 +1,10 @@
+{
+    "name": "CtxOS",
+    "short_name": "CtxOS",
+    "primary_color": "#38bdf8",
+    "accent_color": "#818cf8",
+    "logo_url": "/assets/logo.png",
+    "hero_icon": "🚀",
+    "support_url": "https://github.com/ctxos",
+    "footer_text": "Next-Generation Distro Framework"
+}

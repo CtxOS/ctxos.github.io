@@ -1,0 +1,25 @@
+{
+    "ui": {
+        "search_placeholder": "Buscar aplicaciones y pilas...",
+        "featured_title": "Perfiles y Pilas Destacados",
+        "updates_title": "Actualizaciones del Sistema",
+        "settings_title": "Configuración del Sistema",
+        "back_button": "Volver",
+        "install": "Instalar Pila",
+        "remove": "Eliminar Pila",
+        "switch_profile": "Cambiar a este Perfil",
+        "migrating": "Migrando el Sistema...",
+        "create_snapshot": "🛡️ Creando Punto de Restauración...",
+        "apply_changes": "📦 Aplicando Cambios...",
+        "protection_active": "🛡️ Protección de Instantánea Activa",
+        "protection_desc": "Se creará un punto de restauración automáticamente.",
+        "migration_details": "Detalles de Migración del Sistema",
+        "repo_primary": "Repositorio Primario",
+        "repo_status": "Estado de Conexión",
+        "repo_priority": "Prioridad Forzada"
+    },
+    "alerts": {
+        "updates_available": "Actualizaciones del Sistema Disponibles",
+        "updates_desc": "Tienes {count} actualizaciones esperando ser instaladas."
+    }
+}

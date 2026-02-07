@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "configure" ]; then
+    # Reload DBus and Polkit
+    if [ -x "/usr/bin/systemctl" ]; then
+        systemctl daemon-reload
+        systemctl try-reload-or-restart dbus
+        systemctl try-reload-or-restart polkit
+        systemctl enable org.debianbasekit.SoftwareCenter.service
+        systemctl start org.debianbasekit.SoftwareCenter.service
+    fi
+fi
+
+#DEBHELPER#
+exit 0

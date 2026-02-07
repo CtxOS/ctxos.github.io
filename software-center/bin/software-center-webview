@@ -1,0 +1,3 @@
+#!/bin/sh
+export PYTHONPATH=$PYTHONPATH:/usr/lib/software-center
+exec /usr/bin/python3 /usr/lib/software-center/webview_launcher.py "$@"

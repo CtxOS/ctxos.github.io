@@ -1,0 +1,32 @@
+name: Software Center CI
+
+on:
+  push:
+    paths:
+      - 'software-center/**'
+      - '.github/workflows/software-center.yml'
+  pull_request:
+    paths:
+      - 'software-center/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y debhelper devscripts python3-all python3-setuptools libadwaita-1-0
+
+      - name: Build Package
+        run: |
+          cd software-center
+          make build-deb
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: software-center-deb
+          path: software-center_*.deb

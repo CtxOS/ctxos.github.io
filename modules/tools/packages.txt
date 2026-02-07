@@ -1,0 +1,6 @@
+htop
+vim
+nano
+fastfetch
+tree
+jq

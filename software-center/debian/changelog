@@ -1,0 +1,9 @@
+software-center (1.0.0) unstable; urgency=low
+
+  * Initial release of Debian Base Kit Software Center.
+  * Native GTK4 and Premium Webview frontends.
+  * DBus system service for secure package management.
+  * Integrated Flatpak and AppStream support.
+  * Automatic system snapshots via Timeshift/Snapper.
+
+ -- Debian Base Kit Team <team@debianbasekit.org>  Sat, 07 Feb 2026 11:00:00 +0000

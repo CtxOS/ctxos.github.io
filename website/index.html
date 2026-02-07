@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CtxOS | The Professional Distro Framework</title>
+    <meta name="description"
+        content="A powerful toolkit for building and maintaining professional Debian-based Linux distributions.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-accent">CtxOS</span> Distro Framework
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#software-center">Software Center</a></li>
+                <li><a href="#developers">For Developers</a></li>
+                <li><a href="https://github.com/debian-base-kit" class="btn-primary">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">Version 1.0.0 is out!</span>
+                <h1>Engineer Your Own <span class="gradient-text">Future OS</span></h1>
+                <p>The modular toolkit that bridging the gap between raw Debian and a polished product. Profiles,
+                    snapshots, and a world-class Software Center—all in one base kit.</p>
+                <div class="hero-actions">
+                    <a href="#get-started" class="btn-primary-large">Get the Toolkit</a>
+                    <a href="#demo" class="btn-secondary-large">View Manifest</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="terminal-mockup">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="title">release.sh — v1.0.0</span>
+                    </div>
+                    <div class="terminal-body">
+                        <code class="line"><span class="prompt">$</span> ./scripts/release.sh patch</code>
+                        <code class="line"><span class="info">[RELEASE]</span> Bumping version: 1.0.0 -> 1.0.1</code>
+                        <code class="line"><span class="info">[RELEASE]</span> Updating changelogs...</code>
+                        <code class="line"><span class="info">[RELEASE]</span> Building Software Center...</code>
+                        <code class="line"><span class="info">[RELEASE]</span> Publishing to Aptly Repo...</code>
+                        <code class="line"><span class="success">✅ Success! v1.0.1 is now live.</span></code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Designed for <span class="gradient-text">Agility</span></h2>
+                <p>Build, deploy, and maintain with professional-grade orchestration.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">📦</div>
+                    <h3>Meta-Profiles</h3>
+                    <p>Switch between Server, Desktop, and Dev roles with a single click. Every profile is an atomic
+                        stack.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Snapshot Protection</h3>
+                    <p>Built-in integration with Timeshift and Btrfs. Automatic restore points before every system
+                        change.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌍</div>
+                    <h3>Flatpak Integrated</h3>
+                    <p>Native support for Flathub. Aggregate containerized apps seamlessly alongside APT packages.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">⚙️</div>
+                    <h3>Secure API</h3>
+                    <p>DBus-based system service with Polkit authorization. High-level security for system-wide
+                        operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="software-center" class="showcase">
+        <div class="container">
+            <div class="showcase-content">
+                <h2>The World-Class <span class="gradient-text">Software Center</span></h2>
+                <p>Provide your users with a premium discovery experience. Choose between a native Libadwaita frontend
+                    or a high-end Webview interface.</p>
+                <ul class="check-list">
+                    <li>Rich AppStream Metadata</li>
+                    <li>Automatic Background Updates</li>
+                    <li>One-Click Profile Migrations</li>
+                    <li>Live Search Across Repo & Flathub</li>
+                </ul>
+            </div>
+            <div class="showcase-visual">
+                <div class="ui-mockup">
+                    <div class="ui-sidebar"></div>
+                    <div class="ui-main">
+                        <div class="ui-card"></div>
+                        <div class="ui-card"></div>
+                        <div class="ui-card"></div>
+                    </div>
+                    <div class="ui-toast">Updates Available (12)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="releases" class="releases">
+        <div class="container">
+            <div class="section-title">
+                <h2>Continuous <span class="gradient-text">Evolution</span></h2>
+                <p>Track the latest improvements and system updates.</p>
+            </div>
+            <div class="release-card" id="latest-release">
+                <div class="release-header">
+                    <span class="version-tag">Checking Version...</span>
+                    <span class="release-date">...</span>
+                </div>
+                <div class="release-body">
+                    <ul id="release-points">
+                        <li>Fetching latest logs...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">CtxOS</div>
+                <p>© 2026 CtxOS Team. Licensed under MIT.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

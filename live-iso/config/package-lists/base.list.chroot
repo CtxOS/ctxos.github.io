@@ -1,0 +1,11 @@
+sudo
+zsh
+git
+curl
+ca-certificates
+network-manager
+live-boot
+live-config
+live-tools
+pciutils
+usbutils

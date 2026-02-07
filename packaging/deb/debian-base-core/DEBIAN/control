@@ -1,0 +1,7 @@
+Package: debian-base-core
+Version: 1.0.0
+Architecture: all
+Maintainer: Debian Base Kit Maintainers
+Depends: sudo, curl, git, ca-certificates
+Description: Debian Base Core System
+ This package installs the essentials for the Debian Base Kit.
