@@ -11,7 +11,7 @@ log() { echo -e "\033[0;34m[MIRROR]\033[0m $1"; }
 mkdir -p "$LOG_DIR"
 
 sync_debian() {
-    log "Starting sync for Debian Bookworm (main, contrib)..."
+    log "Starting sync for Debian Bookworm (main, contrib) from $UPSTREAM for $ARCHES..."
     # In a real environment, we'd use debmirror or rsync
     # debmirror --arch="$ARCHES" \
     #           --dist=bookworm \
