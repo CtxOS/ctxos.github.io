@@ -82,235 +82,260 @@ const nodeTypes: NodeTypes = {
     ),
 }
 
-// CtxOS Complete Architecture - All Layers
+// CtxOS Complete Architecture - Pipeline Design
 const ctxosNodes: Node[] = [
-    // Layer 1: Core Modules (Left side)
+    // ========== STAGE 1: SOURCE (Column 1) ==========
     {
         id: "mod-core",
         type: "module",
-        position: { x: 50, y: 50 },
+        position: { x: 50, y: 100 },
         data: { label: "Core Module", description: "Base system utilities", packages: "15" },
     },
     {
         id: "mod-desktop",
         type: "module",
-        position: { x: 50, y: 150 },
+        position: { x: 50, y: 220 },
         data: { label: "Desktop Module", description: "GNOME environment", packages: "8" },
     },
     {
         id: "mod-tools",
         type: "module",
-        position: { x: 50, y: 250 },
+        position: { x: 50, y: 340 },
         data: { label: "Tools Module", description: "Development tools", packages: "12" },
     },
     {
         id: "mod-branding",
         type: "module",
-        position: { x: 50, y: 350 },
-        data: { label: "Branding Module", description: "OS identity & themes", packages: "3" },
+        position: { x: 50, y: 460 },
+        data: { label: "Branding", description: "OS identity & themes", packages: "3" },
     },
     {
         id: "mod-apt",
         type: "module",
-        position: { x: 50, y: 450 },
-        data: { label: "APT Module", description: "Repository config", packages: "2" },
+        position: { x: 50, y: 580 },
+        data: { label: "APT Config", description: "Repository config", packages: "2" },
     },
     {
         id: "mod-software-center",
         type: "module",
-        position: { x: 50, y: 550 },
+        position: { x: 50, y: 700 },
         data: { label: "Software Center", description: "Package manager UI", packages: "1" },
     },
 
-    // Layer 2: Build Scripts
+    // ========== STAGE 2: BUILD (Column 2) ==========
+    {
+        id: "stage-build",
+        type: "stage",
+        position: { x: 350, y: 300 },
+        data: { label: "Build Stage", description: "Compile & package", status: "Active" },
+    },
     {
         id: "script-build-debs",
         type: "script",
         position: { x: 350, y: 150 },
-        data: { label: "build-debs.sh", description: "Build meta-packages", output: ".deb files" },
+        data: { label: "build-debs.sh", description: "Meta-packages", output: ".deb files" },
     },
     {
         id: "script-software-center",
         type: "script",
-        position: { x: 350, y: 550 },
-        data: { label: "make build-deb", description: "Build Software Center", output: "software-center.deb" },
+        position: { x: 350, y: 450 },
+        data: { label: "debuild", description: "Software Center", output: "software-center.deb" },
     },
 
-    // Layer 3: Backend Services
+    // ========== STAGE 3: SERVICES (Column 3) ==========
+    {
+        id: "stage-services",
+        type: "stage",
+        position: { x: 650, y: 300 },
+        data: { label: "Services Layer", description: "System integration", status: "Runtime" },
+    },
     {
         id: "service-dbus",
-        type: "stage",
-        position: { x: 650, y: 50 },
-        data: { label: "DBus Service", description: "org.ctxos.SoftwareCenter", status: "System Service" },
+        type: "script",
+        position: { x: 650, y: 100 },
+        data: { label: "DBus Service", description: "org.ctxos.SoftwareCenter", output: "IPC" },
     },
     {
         id: "service-polkit",
-        type: "stage",
-        position: { x: 650, y: 180 },
-        data: { label: "Polkit Policy", description: "Permission management", status: "Security Layer" },
+        type: "script",
+        position: { x: 650, y: 230 },
+        data: { label: "Polkit", description: "Permission management", output: "Auth" },
     },
     {
         id: "service-snapshot",
-        type: "stage",
-        position: { x: 650, y: 310 },
-        data: { label: "Snapshot Manager", description: "System restore & rollback", status: "Backup Service" },
+        type: "script",
+        position: { x: 650, y: 360 },
+        data: { label: "Snapshot Manager", description: "System restore", output: "Backups" },
     },
-
-    // Layer 4: Repository Management
     {
         id: "script-repo",
         type: "script",
-        position: { x: 650, y: 440 },
+        position: { x: 650, y: 490 },
         data: { label: "manage-repo.sh", description: "Aptly repository", output: "APT repo" },
     },
 
-    // Layer 5: Frontends
+    // ========== STAGE 4: FRONTENDS (Column 4) ==========
     {
         id: "frontend-gtk",
         type: "artifact",
-        position: { x: 950, y: 50 },
-        data: { label: "GTK4 Frontend", description: "Native desktop UI", format: "Python/GTK" },
+        position: { x: 950, y: 150 },
+        data: { label: "GTK4 UI", description: "Native desktop", format: "Python/GTK" },
     },
     {
         id: "frontend-webview",
         type: "artifact",
-        position: { x: 950, y: 180 },
-        data: { label: "Webview Frontend", description: "Web-based UI", format: "HTML/JS" },
+        position: { x: 950, y: 300 },
+        data: { label: "Webview UI", description: "Web-based", format: "HTML/JS" },
+    },
+    {
+        id: "frontend-website",
+        type: "artifact",
+        position: { x: 950, y: 450 },
+        data: { label: "Website", description: "Project showcase", format: "Static HTML" },
     },
 
-    // Layer 6: Pipeline Orchestration
+    // ========== STAGE 5: PIPELINE ORCHESTRATION (Column 5) ==========
     {
         id: "stage-pipeline",
         type: "stage",
-        position: { x: 950, y: 350 },
-        data: { label: "Pipeline Master", description: "Orchestrate full build", status: "Running" },
+        position: { x: 1250, y: 300 },
+        data: { label: "Pipeline Master", description: "Build orchestration", status: "Coordinating" },
     },
 
-    // Layer 7: Build Artifacts
+    // ========== STAGE 6: ARTIFACTS (Column 6) ==========
     {
         id: "artifact-docker",
         type: "artifact",
-        position: { x: 1300, y: 100 },
-        data: { label: "Docker Image", description: "ctxos-base:latest", format: "OCI" },
+        position: { x: 1550, y: 100 },
+        data: { label: "Docker Image", description: "ctxos-base:latest", format: "OCI Container" },
     },
     {
         id: "artifact-iso",
         type: "artifact",
-        position: { x: 1300, y: 250 },
-        data: { label: "Live ISO", description: "Bootable image", format: "ISO 9660" },
+        position: { x: 1550, y: 250 },
+        data: { label: "Live ISO", description: "Bootable installer", format: "ISO 9660" },
+    },
+    {
+        id: "artifact-debs",
+        type: "artifact",
+        position: { x: 1550, y: 400 },
+        data: { label: "DEB Packages", description: "Binary packages", format: ".deb" },
     },
     {
         id: "artifact-repo",
         type: "artifact",
-        position: { x: 1300, y: 400 },
-        data: { label: "APT Repository", description: "Published packages", format: "Aptly" },
-    },
-    {
-        id: "artifact-website",
-        type: "artifact",
-        position: { x: 1300, y: 550 },
-        data: { label: "Website", description: "Project showcase", format: "HTML/CSS" },
+        position: { x: 1550, y: 550 },
+        data: { label: "APT Repository", description: "Published repo", format: "Aptly" },
     },
 
-    // Layer 8: Infrastructure & Deployment
+    // ========== STAGE 7: QUALITY ASSURANCE (Column 7) ==========
+    {
+        id: "stage-qa",
+        type: "stage",
+        position: { x: 1850, y: 300 },
+        data: { label: "Quality Assurance", description: "Testing & validation", status: "Checking" },
+    },
     {
         id: "infra-mirror",
         type: "script",
-        position: { x: 1650, y: 100 },
-        data: { label: "mirror-sync.sh", description: "Upstream sync", output: "Local mirrors" },
+        position: { x: 1850, y: 100 },
+        data: { label: "mirror-sync.sh", description: "Upstream sync", output: "Mirrors" },
     },
     {
         id: "infra-security",
         type: "script",
-        position: { x: 1650, y: 250 },
-        data: { label: "security-audit.sh", description: "Package scanning", output: "Security report" },
+        position: { x: 1850, y: 250 },
+        data: { label: "security-audit.sh", description: "CVE scanning", output: "Report" },
     },
     {
         id: "script-validate",
         type: "script",
-        position: { x: 1650, y: 400 },
-        data: { label: "validate-artifacts.sh", description: "Health checks", output: "Report" },
+        position: { x: 1850, y: 400 },
+        data: { label: "validate-artifacts.sh", description: "Health checks", output: "Pass/Fail" },
     },
 
-    // Layer 9: Release & Distribution
+    // ========== STAGE 8: RELEASE (Column 8) ==========
     {
         id: "stage-release",
         type: "stage",
-        position: { x: 2000, y: 250 },
-        data: { label: "Release", description: "Tag & publish", status: "Ready" },
+        position: { x: 2150, y: 300 },
+        data: { label: "Release Gate", description: "Version tagging", status: "Ready" },
     },
 
-    // Layer 10: Deployment Targets
+    // ========== STAGE 9: DEPLOYMENT (Column 9) ==========
     {
         id: "deploy-github",
         type: "artifact",
-        position: { x: 2350, y: 100 },
-        data: { label: "GitHub Release", description: "Public distribution", format: "Git tag" },
+        position: { x: 2450, y: 150 },
+        data: { label: "GitHub Release", description: "Public distribution", format: "Git tag + assets" },
     },
     {
         id: "deploy-ci",
         type: "artifact",
-        position: { x: 2350, y: 250 },
-        data: { label: "CI/CD Pipeline", description: "Automated builds", format: "GitHub Actions" },
+        position: { x: 2450, y: 300 },
+        data: { label: "CI/CD", description: "Automated builds", format: "GitHub Actions" },
     },
     {
         id: "deploy-users",
         type: "artifact",
-        position: { x: 2350, y: 400 },
-        data: { label: "End Users", description: "Installation & updates", format: "APT/ISO" },
+        position: { x: 2450, y: 450 },
+        data: { label: "End Users", description: "apt install ctxos", format: "Installation" },
     },
 ]
 
 const ctxosEdges: Edge[] = [
-    // Modules to build scripts
-    { id: "e1", source: "mod-core", target: "script-build-debs" },
-    { id: "e2", source: "mod-desktop", target: "script-build-debs" },
-    { id: "e3", source: "mod-tools", target: "script-build-debs" },
-    { id: "e4", source: "mod-branding", target: "script-build-debs" },
-    { id: "e5", source: "mod-apt", target: "script-build-debs" },
-    { id: "e6", source: "mod-software-center", target: "script-software-center" },
+    // Stage 1 → Stage 2: Modules to Build
+    { id: "e1", source: "mod-core", target: "script-build-debs", animated: true },
+    { id: "e2", source: "mod-desktop", target: "script-build-debs", animated: true },
+    { id: "e3", source: "mod-tools", target: "script-build-debs", animated: true },
+    { id: "e4", source: "mod-branding", target: "script-build-debs", animated: true },
+    { id: "e5", source: "mod-apt", target: "script-build-debs", animated: true },
+    { id: "e6", source: "mod-software-center", target: "script-software-center", animated: true },
 
-    // Build scripts to services
-    { id: "e7", source: "script-build-debs", target: "service-dbus" },
-    { id: "e8", source: "script-software-center", target: "service-dbus" },
-    { id: "e9", source: "service-dbus", target: "service-polkit" },
-    { id: "e10", source: "service-polkit", target: "service-snapshot" },
+    // Build scripts to Build Stage
+    { id: "e7", source: "script-build-debs", target: "stage-build", style: { stroke: "#8b5cf6", strokeWidth: 2 } },
+    { id: "e8", source: "script-software-center", target: "stage-build", style: { stroke: "#8b5cf6", strokeWidth: 2 } },
 
-    // Services to repository
-    { id: "e11", source: "script-build-debs", target: "script-repo" },
-    { id: "e12", source: "script-software-center", target: "script-repo" },
-    { id: "e13", source: "service-snapshot", target: "script-repo" },
+    // Stage 2 → Stage 3: Build to Services
+    { id: "e9", source: "stage-build", target: "stage-services", style: { stroke: "#f97316", strokeWidth: 3 }, label: "Packages" },
+    { id: "e10", source: "stage-build", target: "service-dbus" },
+    { id: "e11", source: "stage-build", target: "service-polkit" },
+    { id: "e12", source: "stage-build", target: "service-snapshot" },
+    { id: "e13", source: "stage-build", target: "script-repo" },
 
-    // Services to frontends
-    { id: "e14", source: "service-dbus", target: "frontend-gtk" },
-    { id: "e15", source: "service-dbus", target: "frontend-webview" },
+    // Stage 3 → Stage 4: Services to Frontends
+    { id: "e14", source: "service-dbus", target: "frontend-gtk", animated: true },
+    { id: "e15", source: "service-dbus", target: "frontend-webview", animated: true },
+    { id: "e16", source: "script-repo", target: "frontend-website" },
+    { id: "e17", source: "stage-services", target: "stage-pipeline", style: { stroke: "#f97316", strokeWidth: 3 }, label: "Services" },
 
-    // Repository and frontends to pipeline
-    { id: "e16", source: "script-repo", target: "stage-pipeline" },
-    { id: "e17", source: "frontend-gtk", target: "stage-pipeline" },
-    { id: "e18", source: "frontend-webview", target: "stage-pipeline" },
+    // Stage 4 → Stage 5: Frontends to Pipeline
+    { id: "e18", source: "frontend-gtk", target: "stage-pipeline" },
+    { id: "e19", source: "frontend-webview", target: "stage-pipeline" },
+    { id: "e20", source: "frontend-website", target: "stage-pipeline" },
 
-    // Pipeline to artifacts
-    { id: "e19", source: "stage-pipeline", target: "artifact-docker" },
-    { id: "e20", source: "stage-pipeline", target: "artifact-iso" },
-    { id: "e21", source: "stage-pipeline", target: "artifact-repo" },
-    { id: "e22", source: "stage-pipeline", target: "artifact-website" },
+    // Stage 5 → Stage 6: Pipeline to Artifacts
+    { id: "e21", source: "stage-pipeline", target: "artifact-docker", style: { stroke: "#22c55e", strokeWidth: 2 }, animated: true },
+    { id: "e22", source: "stage-pipeline", target: "artifact-iso", style: { stroke: "#22c55e", strokeWidth: 2 }, animated: true },
+    { id: "e23", source: "stage-pipeline", target: "artifact-debs", style: { stroke: "#22c55e", strokeWidth: 2 }, animated: true },
+    { id: "e24", source: "stage-pipeline", target: "artifact-repo", style: { stroke: "#22c55e", strokeWidth: 2 }, animated: true },
 
-    // Artifacts to infrastructure
-    { id: "e23", source: "artifact-docker", target: "infra-mirror" },
-    { id: "e24", source: "artifact-iso", target: "infra-security" },
-    { id: "e25", source: "artifact-repo", target: "script-validate" },
-    { id: "e26", source: "artifact-website", target: "script-validate" },
+    // Stage 6 → Stage 7: Artifacts to QA
+    { id: "e25", source: "artifact-docker", target: "infra-mirror" },
+    { id: "e26", source: "artifact-iso", target: "infra-security" },
+    { id: "e27", source: "artifact-debs", target: "script-validate" },
+    { id: "e28", source: "artifact-repo", target: "script-validate" },
+    { id: "e29", source: "infra-mirror", target: "stage-qa" },
+    { id: "e30", source: "infra-security", target: "stage-qa" },
+    { id: "e31", source: "script-validate", target: "stage-qa" },
 
-    // Infrastructure to release
-    { id: "e27", source: "infra-mirror", target: "stage-release" },
-    { id: "e28", source: "infra-security", target: "stage-release" },
-    { id: "e29", source: "script-validate", target: "stage-release" },
+    // Stage 7 → Stage 8: QA to Release
+    { id: "e32", source: "stage-qa", target: "stage-release", style: { stroke: "#f97316", strokeWidth: 3 }, label: "✓ Validated" },
 
-    // Release to deployment
-    { id: "e30", source: "stage-release", target: "deploy-github" },
-    { id: "e31", source: "stage-release", target: "deploy-ci" },
-    { id: "e32", source: "stage-release", target: "deploy-users" },
+    // Stage 8 → Stage 9: Release to Deployment
+    { id: "e33", source: "stage-release", target: "deploy-github", style: { stroke: "#22c55e", strokeWidth: 2 }, animated: true },
+    { id: "e34", source: "stage-release", target: "deploy-ci", style: { stroke: "#22c55e", strokeWidth: 2 }, animated: true },
+    { id: "e35", source: "stage-release", target: "deploy-users", style: { stroke: "#22c55e", strokeWidth: 2 }, animated: true },
 ]
 
 export default function CtxOSBuilder() {
