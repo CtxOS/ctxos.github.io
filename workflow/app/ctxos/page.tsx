@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useCallback, useRef, useEffect } from "react"
+import { useState, useCallback, useRef } from "react"
 import {
     ReactFlow,
     applyNodeChanges,
@@ -82,65 +82,111 @@ const nodeTypes: NodeTypes = {
     ),
 }
 
-// CtxOS Build Pipeline Nodes
+// CtxOS Complete Architecture - All Layers
 const ctxosNodes: Node[] = [
-    // Stage 1: Source Modules
+    // Layer 1: Core Modules (Left side)
     {
         id: "mod-core",
         type: "module",
-        position: { x: 50, y: 100 },
+        position: { x: 50, y: 50 },
         data: { label: "Core Module", description: "Base system utilities", packages: "15" },
     },
     {
         id: "mod-desktop",
         type: "module",
-        position: { x: 50, y: 220 },
+        position: { x: 50, y: 150 },
         data: { label: "Desktop Module", description: "GNOME environment", packages: "8" },
     },
     {
         id: "mod-tools",
         type: "module",
-        position: { x: 50, y: 340 },
+        position: { x: 50, y: 250 },
         data: { label: "Tools Module", description: "Development tools", packages: "12" },
+    },
+    {
+        id: "mod-branding",
+        type: "module",
+        position: { x: 50, y: 350 },
+        data: { label: "Branding Module", description: "OS identity & themes", packages: "3" },
+    },
+    {
+        id: "mod-apt",
+        type: "module",
+        position: { x: 50, y: 450 },
+        data: { label: "APT Module", description: "Repository config", packages: "2" },
     },
     {
         id: "mod-software-center",
         type: "module",
-        position: { x: 50, y: 460 },
+        position: { x: 50, y: 550 },
         data: { label: "Software Center", description: "Package manager UI", packages: "1" },
     },
 
-    // Stage 2: Build Scripts
+    // Layer 2: Build Scripts
     {
         id: "script-build-debs",
         type: "script",
-        position: { x: 350, y: 100 },
+        position: { x: 350, y: 150 },
         data: { label: "build-debs.sh", description: "Build meta-packages", output: ".deb files" },
     },
     {
         id: "script-software-center",
         type: "script",
-        position: { x: 350, y: 460 },
+        position: { x: 350, y: 550 },
         data: { label: "make build-deb", description: "Build Software Center", output: "software-center.deb" },
     },
 
-    // Stage 3: Repository Management
+    // Layer 3: Backend Services
+    {
+        id: "service-dbus",
+        type: "stage",
+        position: { x: 650, y: 50 },
+        data: { label: "DBus Service", description: "org.ctxos.SoftwareCenter", status: "System Service" },
+    },
+    {
+        id: "service-polkit",
+        type: "stage",
+        position: { x: 650, y: 180 },
+        data: { label: "Polkit Policy", description: "Permission management", status: "Security Layer" },
+    },
+    {
+        id: "service-snapshot",
+        type: "stage",
+        position: { x: 650, y: 310 },
+        data: { label: "Snapshot Manager", description: "System restore & rollback", status: "Backup Service" },
+    },
+
+    // Layer 4: Repository Management
     {
         id: "script-repo",
         type: "script",
-        position: { x: 650, y: 200 },
+        position: { x: 650, y: 440 },
         data: { label: "manage-repo.sh", description: "Aptly repository", output: "APT repo" },
     },
 
-    // Stage 4: Pipeline Orchestration
+    // Layer 5: Frontends
+    {
+        id: "frontend-gtk",
+        type: "artifact",
+        position: { x: 950, y: 50 },
+        data: { label: "GTK4 Frontend", description: "Native desktop UI", format: "Python/GTK" },
+    },
+    {
+        id: "frontend-webview",
+        type: "artifact",
+        position: { x: 950, y: 180 },
+        data: { label: "Webview Frontend", description: "Web-based UI", format: "HTML/JS" },
+    },
+
+    // Layer 6: Pipeline Orchestration
     {
         id: "stage-pipeline",
         type: "stage",
-        position: { x: 950, y: 250 },
+        position: { x: 950, y: 350 },
         data: { label: "Pipeline Master", description: "Orchestrate full build", status: "Running" },
     },
 
-    // Stage 5: Artifacts
+    // Layer 7: Build Artifacts
     {
         id: "artifact-docker",
         type: "artifact",
@@ -159,21 +205,59 @@ const ctxosNodes: Node[] = [
         position: { x: 1300, y: 400 },
         data: { label: "APT Repository", description: "Published packages", format: "Aptly" },
     },
+    {
+        id: "artifact-website",
+        type: "artifact",
+        position: { x: 1300, y: 550 },
+        data: { label: "Website", description: "Project showcase", format: "HTML/CSS" },
+    },
 
-    // Stage 6: Validation
+    // Layer 8: Infrastructure & Deployment
+    {
+        id: "infra-mirror",
+        type: "script",
+        position: { x: 1650, y: 100 },
+        data: { label: "mirror-sync.sh", description: "Upstream sync", output: "Local mirrors" },
+    },
+    {
+        id: "infra-security",
+        type: "script",
+        position: { x: 1650, y: 250 },
+        data: { label: "security-audit.sh", description: "Package scanning", output: "Security report" },
+    },
     {
         id: "script-validate",
         type: "script",
-        position: { x: 1650, y: 250 },
+        position: { x: 1650, y: 400 },
         data: { label: "validate-artifacts.sh", description: "Health checks", output: "Report" },
     },
 
-    // Stage 7: Release
+    // Layer 9: Release & Distribution
     {
         id: "stage-release",
         type: "stage",
-        position: { x: 1950, y: 250 },
+        position: { x: 2000, y: 250 },
         data: { label: "Release", description: "Tag & publish", status: "Ready" },
+    },
+
+    // Layer 10: Deployment Targets
+    {
+        id: "deploy-github",
+        type: "artifact",
+        position: { x: 2350, y: 100 },
+        data: { label: "GitHub Release", description: "Public distribution", format: "Git tag" },
+    },
+    {
+        id: "deploy-ci",
+        type: "artifact",
+        position: { x: 2350, y: 250 },
+        data: { label: "CI/CD Pipeline", description: "Automated builds", format: "GitHub Actions" },
+    },
+    {
+        id: "deploy-users",
+        type: "artifact",
+        position: { x: 2350, y: 400 },
+        data: { label: "End Users", description: "Installation & updates", format: "APT/ISO" },
     },
 ]
 
@@ -182,27 +266,51 @@ const ctxosEdges: Edge[] = [
     { id: "e1", source: "mod-core", target: "script-build-debs" },
     { id: "e2", source: "mod-desktop", target: "script-build-debs" },
     { id: "e3", source: "mod-tools", target: "script-build-debs" },
-    { id: "e4", source: "mod-software-center", target: "script-software-center" },
+    { id: "e4", source: "mod-branding", target: "script-build-debs" },
+    { id: "e5", source: "mod-apt", target: "script-build-debs" },
+    { id: "e6", source: "mod-software-center", target: "script-software-center" },
 
-    // Build scripts to repo
-    { id: "e5", source: "script-build-debs", target: "script-repo" },
-    { id: "e6", source: "script-software-center", target: "script-repo" },
+    // Build scripts to services
+    { id: "e7", source: "script-build-debs", target: "service-dbus" },
+    { id: "e8", source: "script-software-center", target: "service-dbus" },
+    { id: "e9", source: "service-dbus", target: "service-polkit" },
+    { id: "e10", source: "service-polkit", target: "service-snapshot" },
 
-    // Repo to pipeline
-    { id: "e7", source: "script-repo", target: "stage-pipeline" },
+    // Services to repository
+    { id: "e11", source: "script-build-debs", target: "script-repo" },
+    { id: "e12", source: "script-software-center", target: "script-repo" },
+    { id: "e13", source: "service-snapshot", target: "script-repo" },
+
+    // Services to frontends
+    { id: "e14", source: "service-dbus", target: "frontend-gtk" },
+    { id: "e15", source: "service-dbus", target: "frontend-webview" },
+
+    // Repository and frontends to pipeline
+    { id: "e16", source: "script-repo", target: "stage-pipeline" },
+    { id: "e17", source: "frontend-gtk", target: "stage-pipeline" },
+    { id: "e18", source: "frontend-webview", target: "stage-pipeline" },
 
     // Pipeline to artifacts
-    { id: "e8", source: "stage-pipeline", target: "artifact-docker" },
-    { id: "e9", source: "stage-pipeline", target: "artifact-iso" },
-    { id: "e10", source: "stage-pipeline", target: "artifact-repo" },
+    { id: "e19", source: "stage-pipeline", target: "artifact-docker" },
+    { id: "e20", source: "stage-pipeline", target: "artifact-iso" },
+    { id: "e21", source: "stage-pipeline", target: "artifact-repo" },
+    { id: "e22", source: "stage-pipeline", target: "artifact-website" },
 
-    // Artifacts to validation
-    { id: "e11", source: "artifact-docker", target: "script-validate" },
-    { id: "e12", source: "artifact-iso", target: "script-validate" },
-    { id: "e13", source: "artifact-repo", target: "script-validate" },
+    // Artifacts to infrastructure
+    { id: "e23", source: "artifact-docker", target: "infra-mirror" },
+    { id: "e24", source: "artifact-iso", target: "infra-security" },
+    { id: "e25", source: "artifact-repo", target: "script-validate" },
+    { id: "e26", source: "artifact-website", target: "script-validate" },
 
-    // Validation to release
-    { id: "e14", source: "script-validate", target: "stage-release" },
+    // Infrastructure to release
+    { id: "e27", source: "infra-mirror", target: "stage-release" },
+    { id: "e28", source: "infra-security", target: "stage-release" },
+    { id: "e29", source: "script-validate", target: "stage-release" },
+
+    // Release to deployment
+    { id: "e30", source: "stage-release", target: "deploy-github" },
+    { id: "e31", source: "stage-release", target: "deploy-ci" },
+    { id: "e32", source: "stage-release", target: "deploy-users" },
 ]
 
 export default function CtxOSBuilder() {
@@ -223,7 +331,7 @@ export default function CtxOSBuilder() {
         const url = URL.createObjectURL(blob)
         const a = document.createElement("a")
         a.href = url
-        a.download = `ctxos-build-map-${new Date().toISOString().slice(0, 10)}.json`
+        a.download = `ctxos-architecture-${new Date().toISOString().slice(0, 10)}.json`
         document.body.appendChild(a)
         a.click()
         document.body.removeChild(a)
@@ -279,8 +387,8 @@ export default function CtxOSBuilder() {
                         <Layers className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-lg font-semibold text-foreground md:text-xl">CtxOS Build Pipeline</h1>
-                        <p className="text-xs text-muted-foreground md:text-sm">Distribution Build Flow Visualizer</p>
+                        <h1 className="text-lg font-semibold text-foreground md:text-xl">CtxOS Complete Architecture</h1>
+                        <p className="text-xs text-muted-foreground md:text-sm">All Layers & Components Visualized</p>
                     </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 md:gap-3">
