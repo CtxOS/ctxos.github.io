@@ -89,7 +89,7 @@ async function init() {
         document.getElementById('details-desc').textContent = app.description || "No description available.";
         document.getElementById('details-version').textContent = `Version: ${app.version || 'unknown'}`;
         document.getElementById('details-size').textContent = `Size: ${app.size || 'unknown'}`;
-        document.getElementById('details-repo').textContent = app.repo || 'debian-base-kit';
+        document.getElementById('details-repo').textContent = app.repo || 'ctxos';
 
         // Screenshots
         const detailsMain = document.querySelector('.details-main');

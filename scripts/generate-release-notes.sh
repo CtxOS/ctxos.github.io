@@ -30,7 +30,7 @@ fi)
 
 ## 🏗️ Artifacts
 - **Software Center .deb**: Core management interface.
-- **Docker Image**: \`debian-base-kit:$VERSION\`
+- **Docker Image**: \`ctxos:$VERSION\`
 - **Live ISO**: Available for hardware validation.
 
 ## 🛰️ Fleet Status

@@ -34,7 +34,7 @@ class AppManager:
         """Returns the status and priority of the system repositories."""
         # In a real system, we'd check /etc/apt/sources.list.d/
         return {
-            "primary": "repo.debian-base-kit.org",
+            "primary": "ctxos.github.io",
             "upstream": "deb.debian.org",
             "status": "online",
             "priority_enforced": True

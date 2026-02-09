@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# manage-repo.sh - Automate Debian Base Kit APT Repo management
+# manage-repo.sh - Automate CtxOS APT Repo management
 set -e
 
-REPO_NAME="debian-base-kit"
+REPO_NAME="ctxos"
 DISTRIBUTION="bookworm"
 COMPONENT="main"
-GPG_KEY="Debian Base Kit"
+GPG_KEY="CtxOS"
 ROOT_DIR="/var/lib/aptly"
 INCOMING_DIR="$ROOT_DIR/incoming"
 

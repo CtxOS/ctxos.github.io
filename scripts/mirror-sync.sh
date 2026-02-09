@@ -2,7 +2,7 @@
 # mirror-sync.sh - Maintain local mirrors of upstream repositories
 set -e
 
-MIRROR_ROOT="/srv/debian-base-kit/mirror"
+MIRROR_ROOT="/srv/ctxos/mirror"
 LOG_DIR="logs/mirrors"
 ARCHES="amd64,arm64"
 UPSTREAM="http://deb.debian.org/debian"

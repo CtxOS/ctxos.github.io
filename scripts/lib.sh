@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# lib.sh - General helper functions for debian-base-kit
+# lib.sh - General helper functions for ctxos
 
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPTS_DIR/log.sh"

@@ -25,7 +25,7 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#software-center">Software Center</a></li>
                 <li><a href="#developers">For Developers</a></li>
-                <li><a href="https://github.com/debian-base-kit" class="btn-primary">GitHub</a></li>
+                <li><a href="https://github.com/ctxos/ctxos" class="btn-primary">GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -119,6 +119,65 @@
                         <div class="ui-card"></div>
                     </div>
                     <div class="ui-toast">Updates Available (12)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="get-started" class="get-started">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get Started with <span class="gradient-text">CtxOS</span></h2>
+                <p>Deploy the framework on any Debian Bookworm system in seconds.</p>
+            </div>
+
+            <div class="get-started-grid">
+                <div class="install-method">
+                    <div class="method-header">
+                        <h3>⚡ Quick Installation</h3>
+                        <p>The recommended way to join the CtxOS ecosystem.</p>
+                    </div>
+                    <div class="terminal-mockup">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="title">bash</span>
+                        </div>
+                        <div class="terminal-body">
+                            <code class="line">
+                                <span class="prompt">$</span> curl -sSL https://ctxos.github.io/install.sh | sudo bash
+                            </code>
+                        </div>
+                    </div>
+                    <p class="method-note">This script automates GPG key import and repository configuration.</p>
+                </div>
+
+                <div class="manual-method">
+                    <h3>🛠️ Manual Configuration</h3>
+                    <div class="step">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <h4>Download GPG Key</h4>
+                            <code
+                                class="code-block">curl -fsSL https://ctxos.github.io/ctxos.asc | sudo gpg --dearmor -o /usr/share/keyrings/ctxos.gpg</code>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <h4>Add Sources List</h4>
+                            <code
+                                class="code-block">echo "deb [signed-by=/usr/share/keyrings/ctxos.gpg] https://ctxos.github.io bookworm main" | sudo tee /etc/apt/sources.list.d/ctxos.list</code>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <h4>Install Core</h4>
+                            <code class="code-block">sudo apt update && sudo apt install ctxos-core</code>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

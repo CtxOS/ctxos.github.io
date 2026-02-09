@@ -4,26 +4,26 @@ import json
 class MetaProvider:
     """Handles meta-packages and system profiles (stacks)."""
 
-    METAPACKAGE_PREFIX = "debian-base-"
+    METAPACKAGE_PREFIX = "ctxos-"
     
     # Predefined profiles for the software center
     PROFILES = {
         "desktop": {
-            "id": "debian-base-desktop",
+            "id": "ctxos-desktop",
             "name": "Desktop Environment",
             "description": "A full-featured desktop environment with productivity tools.",
             "type": "profile",
             "icon": "desktop-symbolic"
         },
         "server": {
-            "id": "debian-base-server",
+            "id": "ctxos-server",
             "name": "Server Base",
             "description": "Minimal server environment with core networking and security tools.",
             "type": "profile",
             "icon": "server-symbolic"
         },
         "dev": {
-            "id": "debian-base-dev",
+            "id": "ctxos-dev",
             "name": "Development Stack",
             "description": "Compilers, debuggers, and essential development libraries.",
             "type": "profile",
@@ -73,6 +73,6 @@ class MetaProvider:
                     "description": info.get("Description", ""),
                     "installed": self.apt.is_installed(pkg),
                     "type": "stack",
-                    "repo": info.get("Origin", "debian-base-kit")
+                    "repo": info.get("Origin", "ctxos")
                 })
         return meta_pkgs

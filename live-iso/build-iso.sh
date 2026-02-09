@@ -28,7 +28,7 @@ log "Building ISO..."
 lb build
 
 # Profile-aware naming
-ISO_NAME="debian-base-kit-${PROFILE:-base}-$(date +%Y%m%d).iso"
+ISO_NAME="ctxos-${PROFILE:-base}-$(date +%Y%m%d).iso"
 if [ -f "live-image-amd64.hybrid.iso" ]; then
     log "Build successful. Renaming artifact to $ISO_NAME"
     mv live-image-amd64.hybrid.iso "$ISO_NAME"

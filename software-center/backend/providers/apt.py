@@ -18,13 +18,13 @@ class AptProvider:
             return self._parse_apt_show(result.stdout)
         except (subprocess.CalledProcessError, FileNotFoundError):
             # Mock data for development
-            if "debian-base" in package_name:
+            if "ctxos" in package_name:
                 return {
                     "Package": package_name,
                     "Version": "1.0.0",
                     "Description": f"This is a mock description for {package_name}",
                     "Installed-Size": "1024",
-                    "Origin": "debian-base-kit"
+                    "Origin": "ctxos"
                 }
             return None
 
@@ -38,7 +38,7 @@ class AptProvider:
             return result.stdout.splitlines()
         except (subprocess.CalledProcessError, FileNotFoundError):
             # Mock data for development
-            return ["debian-base-core", "debian-base-desktop", "debian-base-tools"]
+            return ["ctxos-core", "ctxos-desktop", "ctxos-tools"]
 
     def is_installed(self, package_name):
         """Checks if a package is installed."""
@@ -50,7 +50,7 @@ class AptProvider:
             return "install ok installed" in result.stdout
         except (subprocess.CalledProcessError, FileNotFoundError):
             # Mock some packages as installed
-            return package_name in ["debian-base-core"]
+            return package_name in ["ctxos-core"]
 
     def _parse_apt_show(self, output):
         """Parses the output of apt-cache show."""

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# log.sh - Logging utilities for debian-base-kit
+# log.sh - Logging utilities for ctxos
 
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
