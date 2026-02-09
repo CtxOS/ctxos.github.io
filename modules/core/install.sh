@@ -3,7 +3,8 @@ set -e
 source ../../scripts/lib.sh
 
 log "Installing core packages"
-apt-get update
+# Update is handled by apt module, but we do a quick refresh if needed
+apt-get update -o Acquire::Retries=1 -o Acquire::http::Timeout="5" || warn "Standard repository update failed. Continuing anyway..."
 xargs -a packages.txt apt-get install -y
 
 if [ -d "files" ]; then
