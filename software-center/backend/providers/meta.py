@@ -28,6 +28,34 @@ class MetaProvider:
             "description": "Compilers, debuggers, and essential development libraries.",
             "type": "profile",
             "icon": "builder-symbolic"
+        },
+        "security-web": {
+            "id": "ctxos-tools-web",
+            "name": "Web Security Stack",
+            "description": "Comprehensive tools for web application assessment and exploitation.",
+            "type": "profile",
+            "icon": "network-wired-symbolic"
+        },
+        "security-wireless": {
+            "id": "ctxos-tools-wireless",
+            "name": "Wireless Auditing Stack",
+            "description": "Tools for WiFi, Bluetooth, and RF security research.",
+            "type": "profile",
+            "icon": "network-wireless-symbolic"
+        },
+        "security-forensics": {
+            "id": "ctxos-tools-forensics",
+            "name": "Digital Forensics Stack",
+            "description": "Evidence collection, file carving, and memory analysis utilities.",
+            "type": "profile",
+            "icon": "drive-harddisk-symbolic"
+        },
+        "security-reversing": {
+            "id": "ctxos-tools-reversing",
+            "name": "Reverse Engineering Stack",
+            "description": "Disassemblers, decompilers, and binary analysis frameworks.",
+            "type": "profile",
+            "icon": "emblem-system-symbolic"
         }
     }
 

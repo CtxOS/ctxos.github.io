@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=hashrat
+Comment=hashrat
+Encoding=UTF-8
+Exec=menuexec hashrat --help
+Icon=ctxos_hashrat
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=10-maintain;
+X-Ctxos-Package=hashrat

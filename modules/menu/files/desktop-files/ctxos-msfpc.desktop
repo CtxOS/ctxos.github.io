@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=msfpc
+Comment=msfpc
+Encoding=UTF-8
+Exec=menuexec msfpc --help
+Icon=ctxos_msfpc
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=10-maintain;
+X-Ctxos-Package=msfpc

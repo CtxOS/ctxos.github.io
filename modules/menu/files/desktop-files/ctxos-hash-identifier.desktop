@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=hash-identifier
+Comment=hash-identifier
+Encoding=UTF-8
+Exec=menuexec hash-identifier --help
+Icon=ctxos_hash-identifier
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=10-maintain;
+X-Ctxos-Package=hash-identifier

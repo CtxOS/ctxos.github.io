@@ -42,6 +42,14 @@ case "$1" in
         log "Cleaning up old snapshots..."
         aptly snapshot list -raw | grep "${REPO_NAME}-" | head -n -3 | xargs -r -n 1 aptly snapshot drop
         ;;
+    sync-web)
+        log "Syncing published repo to web directory..."
+        # Aptly publishes to ~/.aptly/public by default if rootDir isn't absolute in certain contexts,
+        # but here rootDir is /var/lib/aptly.
+        # We'll copy the contents to a local 'repo' folder for GitHub Pages.
+        mkdir -p ../../repo
+        cp -rv /var/lib/aptly/public/* ../../repo/
+        ;;
     *)
         usage
         ;;

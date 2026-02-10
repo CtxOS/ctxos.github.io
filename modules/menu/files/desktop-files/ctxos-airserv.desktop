@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=airserv
+Comment=airserv
+Encoding=UTF-8
+Exec=menuexec airserv --help
+Icon=ctxos_airserv
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=10-maintain;
+X-Ctxos-Package=airserv

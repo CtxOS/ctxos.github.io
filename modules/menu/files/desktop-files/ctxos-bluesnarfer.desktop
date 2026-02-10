@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=bluesnarfer
+Comment=bluesnarfer
+Encoding=UTF-8
+Exec=menuexec bluesnarfer --help
+Icon=ctxos_bluesnarfer
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=10-maintain;
+X-Ctxos-Package=bluesnarfer

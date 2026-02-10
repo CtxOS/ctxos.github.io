@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=mitmproxy
+Comment=mitmproxy
+Encoding=UTF-8
+Exec=menuexec mitmproxy --help
+Icon=ctxos_mitmproxy
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=09-01-network-sniffers;09-sniffing-spoofing;
+X-Ctxos-Package=mitmproxy

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=blueranger
+Comment=blueranger
+Encoding=UTF-8
+Exec=menuexec blueranger --help
+Icon=ctxos_blueranger
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=10-maintain;
+X-Ctxos-Package=blueranger

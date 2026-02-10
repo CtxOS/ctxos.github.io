@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=cangw
+Comment=cangw
+Encoding=UTF-8
+Exec=menuexec cangw --help
+Icon=ctxos_cangw
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=10-maintain;
+X-Ctxos-Package=cangw

@@ -28,26 +28,20 @@ class AppCard(Gtk.Button):
         super().__init__()
         self.app_data = app_data
         self.add_css_class("flat")
+        self.add_css_class("card")
         
         content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
         content.set_margin_all(16)
         
         icon_name = app_data.get("icon", "system-component-symbolic")
         icon = Gtk.Image.new_from_icon_name(icon_name)
-        icon.set_pixel_size(64)
+        icon.set_pixel_size(48)
         content.append(icon)
         
         name_label = Gtk.Label(label=app_data["name"])
         name_label.add_css_class("title-4")
-        name_label.set_wrap(True)
+        name_label.set_ellipsize(3) # Pango.EllipsizeMode.END
         content.append(name_label)
-        
-        status = "Installed" if app_data.get("installed") else "Available"
-        status_label = Gtk.Label(label=status)
-        status_label.add_css_class("caption")
-        if app_data.get("installed"):
-            status_label.add_css_class("success")
-        content.append(status_label)
         
         self.set_child(content)
 
@@ -58,44 +52,126 @@ class SoftwareCenterApp(Adw.Application):
 
     def do_activate(self):
         self.win = Adw.ApplicationWindow(application=self)
-        self.win.set_title("Software Center")
-        self.win.set_default_size(1000, 750)
+        self.win.set_title("CtxOS Software Center")
+        self.win.set_default_size(1100, 800)
 
+        # Main Layout
+        self.main_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        
+        # Sidebar
+        self.sidebar = self.create_sidebar()
+        self.main_box.append(self.sidebar)
+        
+        # Content Area
         self.content_stack = Adw.ViewStack()
+        self.content_stack.set_transition_type(Adw.ViewStackTransitionType.SLIDE_LEFT_RIGHT)
         
-        # Navigation
-        self.nav_view = Adw.NavigationSplitView()
-        self.sidebar_page = Adw.NavigationPage.new(self.create_sidebar(), "Sidebar")
-        self.nav_view.set_sidebar(self.sidebar_page)
-        self.nav_view.set_content(Adw.NavigationPage.new(self.content_stack, "Content"))
-
-        # Pages
-        self.content_stack.add_titled(self.create_home_page(), "home", "Home")
-        self.content_stack.add_titled(self.create_details_page(), "details", "Details")
+        self.home_page = self.create_home_page()
+        self.content_stack.add_titled(self.home_page, "home", "Home")
         
-        self.win.set_content(self.nav_view)
+        self.details_page = self.create_details_page()
+        self.content_stack.add_titled(self.details_page, "details", "Details")
+        
+        self.main_box.append(self.content_stack)
+        
+        self.win.set_content(self.main_box)
+        
+        # Load CSS
+        self.load_custom_css()
+        
         self.win.present()
 
+    def load_custom_css(self):
+        css_provider = Gtk.CssProvider()
+        css = """
+        .card {
+            background: alpha(@theme_bg_color, 0.4);
+            border-radius: 12px;
+            border: 1px solid alpha(@theme_fg_color, 0.1);
+            transition: all 200ms ease;
+        }
+        .card:hover {
+            background: alpha(@theme_selected_bg_color, 0.2);
+            transform: translateY(-2px);
+        }
+        .title-gradient {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        """
+        css_provider.load_from_data(css.encode())
+        Gtk.StyleContext.add_provider_for_display(
+            self.win.get_display(), 
+            css_provider, 
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+
     def create_sidebar(self):
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        box.set_size_request(240, -1)
+        box.add_css_class("sidebar")
+        box.set_margin_all(12)
+        
+        logo_box = Gtk.Box(spacing=12)
+        logo = Gtk.Image.new_from_icon_name("ctxos")
+        logo.set_pixel_size(32)
+        logo_box.append(logo)
+        
+        title = Gtk.Label(label="CtxOS")
+        title.add_css_class("title-2")
+        logo_box.append(title)
+        box.append(logo_box)
+        
         listbox = Gtk.ListBox()
         listbox.add_css_class("navigation-sidebar")
         
-        items = [("Home", "go-home-symbolic", "home"), ("Profiles", "system-component-symbolic", "profiles")]
-        for name, icon, sid in items:
+        main_items = [
+            ("Home", "go-home-symbolic", "home"),
+            ("Security Stacks", "security-high-symbolic", "security"),
+            ("System", "emblem-system-symbolic", "system"),
+            ("Installed", "emblem-ok-symbolic", "installed")
+        ]
+        
+        for name, icon, sid in main_items:
             row = Adw.ActionRow(title=name)
             row.add_prefix(Gtk.Image.new_from_icon_name(icon))
-            row.stack_id = sid
+            row.sid = sid
             listbox.append(row)
             
-        listbox.connect("row-activated", lambda lb, row: self.content_stack.set_visible_child_name(row.stack_id))
-        return listbox
+        listbox.connect("row-activated", self.on_sidebar_activated)
+        box.append(listbox)
+        return box
+
+    def on_sidebar_activated(self, lb, row):
+        if row.sid == "home":
+            self.load_featured()
+            self.content_stack.set_visible_child_name("home")
+        elif row.sid == "security":
+            self.load_category("security")
+            self.content_stack.set_visible_child_name("home")
 
     def create_home_page(self):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        
         header = Adw.HeaderBar()
+        self.search_bar = Gtk.SearchEntry(placeholder_text="Search security tools...")
+        self.search_bar.connect("activate", self.on_search)
+        header.set_title_widget(self.search_bar)
         box.append(header)
         
-        self.flowbox = Gtk.FlowBox(valign=Gtk.Align.START, max_children_per_line=4, selection_mode=0, homogeneous=True)
+        self.flowbox = Gtk.FlowBox(
+            valign=Gtk.Align.START, 
+            max_children_per_line=5, 
+            min_children_per_line=2,
+            selection_mode=0, 
+            homogeneous=True,
+            column_spacing=12,
+            row_spacing=12
+        )
+        self.flowbox.set_margin_all(24)
+        
         self.load_featured()
         
         scroll = Gtk.ScrolledWindow(vexpand=True)
@@ -103,11 +179,44 @@ class SoftwareCenterApp(Adw.Application):
         box.append(scroll)
         return box
 
+    def clear_flowbox(self):
+        while True:
+            child = self.flowbox.get_first_child()
+            if not child: break
+            self.flowbox.remove(child)
+
     def load_featured(self):
+        self.clear_flowbox()
         if HAS_DBUS:
             apps = json.loads(dbus_service.ListFeatured())
         else:
             apps = direct_apps.get_featured_apps()
+            
+        for app in apps:
+            card = AppCard(app)
+            card.connect("clicked", lambda b: self.show_details(b.app_data["id"]))
+            self.flowbox.append(card)
+
+    def load_category(self, cat_id):
+        self.clear_flowbox()
+        if HAS_DBUS:
+            # Note: ListAll category filter might not be implemented in DBus yet
+            apps = json.loads(dbus_service.ListAll())
+        else:
+            apps = direct_apps.get_all_apps(category=cat_id)
+            
+        for app in apps:
+            card = AppCard(app)
+            card.connect("clicked", lambda b: self.show_details(b.app_data["id"]))
+            self.flowbox.append(card)
+
+    def on_search(self, entry):
+        query = entry.get_text()
+        self.clear_flowbox()
+        if HAS_DBUS:
+            apps = json.loads(dbus_service.Search(query))
+        else:
+            apps = direct_apps.search_apps(query)
             
         for app in apps:
             card = AppCard(app)
@@ -121,36 +230,58 @@ class SoftwareCenterApp(Adw.Application):
             app = direct_apps.get_app_details(app_id)
             
         self.details_title.set_label(app["name"])
-        self.details_desc.set_label(app["description"])
+        self.details_desc.set_label(app.get("description", "No description available."))
         self.install_btn.app_id = app_id
+        
+        if app.get("installed"):
+            self.install_btn.set_label("Remove")
+            self.install_btn.add_css_class("destructive-action")
+        else:
+            self.install_btn.set_label("Install")
+            self.install_btn.add_css_class("suggested-action")
+            self.install_btn.remove_css_class("destructive-action")
+            
         self.content_stack.set_visible_child_name("details")
 
     def create_details_page(self):
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
-        box.set_margin_all(32)
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        header = Adw.HeaderBar()
+        back = Gtk.Button.new_from_icon_name("go-previous-symbolic")
+        back.connect("clicked", lambda x: self.content_stack.set_visible_child_name("home"))
+        header.pack_start(back)
+        box.append(header)
+
+        inner = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=24)
+        inner.set_margin_all(48)
         
         self.details_title = Gtk.Label(xalign=0)
         self.details_title.add_css_class("title-1")
-        box.append(self.details_title)
+        inner.append(self.details_title)
         
         self.details_desc = Gtk.Label(xalign=0, wrap=True)
-        box.append(self.details_desc)
+        inner.append(self.details_desc)
         
+        btn_box = Gtk.Box(spacing=12)
         self.install_btn = Gtk.Button(label="Install", halign=Gtk.Align.START)
+        self.install_btn.set_size_request(120, 44)
         self.install_btn.connect("clicked", self.on_install)
-        box.append(self.install_btn)
+        btn_box.append(self.install_btn)
+        inner.append(btn_box)
         
-        back = Gtk.Button(label="Back", halign=Gtk.Align.START)
-        back.connect("clicked", lambda x: self.content_stack.set_visible_child_name("home"))
-        box.append(back)
-        
+        box.append(inner)
         return box
 
     def on_install(self, btn):
+        self.install_btn.set_sensitive(False)
+        self.install_btn.set_label("Working...")
+        
+        # In a real app, this would be async
         if HAS_DBUS:
             dbus_service.Install(btn.app_id)
         else:
             direct_actions.install(btn.app_id)
+            
+        self.install_btn.set_sensitive(True)
         self.show_details(btn.app_id)
 
 if __name__ == "__main__":

@@ -55,7 +55,8 @@ class AppManager:
             {"id": "system", "name": "System", "icon": "emblem-system-symbolic"},
             {"id": "development", "name": "Development", "icon": "applications-engineering-symbolic"},
             {"id": "media", "name": "Media", "icon": "applications-multimedia-symbolic"},
-            {"id": "server", "name": "Server", "icon": "network-server-symbolic"}
+            {"id": "server", "name": "Server", "icon": "network-server-symbolic"},
+            {"id": "security", "name": "Security", "icon": "security-high-symbolic"}
         ]
 
     def get_all_apps(self, category=None):

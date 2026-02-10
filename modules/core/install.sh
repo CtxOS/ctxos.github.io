@@ -23,7 +23,31 @@ if [ -d "files" ]; then
                 limits.conf)
                     install_file "$f" /etc/security/limits.d/99-core.conf
                     ;;
+                kde_settings.conf)
+                    mkdir -p /etc/sddm.conf.d
+                    install_file "$f" /etc/sddm.conf.d/99-core.conf
+                    ;;
+                zshrc)
+                    install_file "$f" /etc/skel/.zshrc
+                    install_file "$f" /root/.zshrc
+                    ;;
             esac
         fi
     done
+fi
+
+if [ -d "files/apparmor" ]; then
+    log "Installing AppArmor profiles"
+    mkdir -p /etc/apparmor.d
+    for p in files/apparmor/*; do
+        if [ -f "$p" ]; then
+            install_file "$p" "/etc/apparmor.d/$(basename "$p")"
+        fi
+    done
+    if command -v apparmor_parser &> /dev/null; then
+        log "Enabling AppArmor profiles..."
+        for p in /etc/apparmor.d/*; do
+            [ -f "$p" ] && apparmor_parser -r "$p" || true
+        done
+    fi
 fi

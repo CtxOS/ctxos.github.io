@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=wfuzz
+Comment=wfuzz
+Encoding=UTF-8
+Exec=menuexec wfuzz --help
+Icon=ctxos_wfuzz
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=03-04-web-crawlers;03-webapp-analysis;
+X-Ctxos-Package=wfuzz

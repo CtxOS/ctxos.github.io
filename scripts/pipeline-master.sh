@@ -44,6 +44,15 @@ else
     log "Skipping Multi-Arch build. Set BUILD_MULTI_ARCH=true to enable."
 fi
 
+# 3.8 Update APT Repository
+log "Stage 3.8: Updating APT Repository..."
+# Ensure debs from build_output are in incoming
+mkdir -p packaging/repo/incoming
+find build_output/ -name "*.deb" -exec cp {} packaging/repo/incoming/ \;
+./packaging/repo/manage-repo.sh add
+./packaging/repo/manage-repo.sh publish
+./packaging/repo/manage-repo.sh sync-web
+
 # 4. Validate everything
 log "Stage 4: Artifact Validation & Release Notes..."
 ./scripts/validate-artifacts.sh

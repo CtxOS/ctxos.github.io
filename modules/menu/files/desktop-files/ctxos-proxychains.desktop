@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=proxychains
+Comment=proxychains
+Encoding=UTF-8
+Exec=menuexec proxychains --help
+Icon=ctxos_proxychains
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=10-maintain;
+X-Ctxos-Package=proxychains
