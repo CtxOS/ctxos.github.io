@@ -1,7 +1,13 @@
+Source: debian-base-desktop
+Section: misc
+Priority: optional
+Maintainer: CtxOS Team <team@ctxos.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.0
+
 Package: debian-base-desktop
-Version: 1.0.0
 Architecture: all
-Maintainer: Debian Base Kit Maintainers
-Depends: xorg, desktop-base, network-manager-gnome
-Description: Debian Base Desktop System
- This package installs the desktop environment components for the Debian Base Kit.
+Depends: xorg, sddm, plasma-desktop, konsole, dolphin, plasma-nm, plasma-pa, network-manager-gnome, adwaita-icon-theme, libadwaita-1-0, python3-gi, python3-pydbus, qt5-style-kvantum
+Description: CtxOS Desktop Environment
+ This meta-package installs the CtxOS Plasma-based desktop environment 
+ and required libraries for the CtxOS Software Center.

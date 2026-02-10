@@ -61,13 +61,32 @@ class AppManager:
 
     def get_all_apps(self, category=None):
         """Returns all apps, optionally filtered by category."""
-        # Mix of Meta-packages (Profiles), Stacks, and regular apps
-        apps = self.meta.get_meta_packages() + self.meta.list_profiles()
+        # Start with Meta-packages and Profiles
+        all_apps = self.meta.get_meta_packages() + self.meta.list_profiles()
         
-        # Add Flatpaks if available
-        apps += self.flatpak.list_apps()
+        # Add Flatpaks
+        all_apps += self.flatpak.list_apps()
         
-        return apps
+        if not category:
+            return all_apps
+            
+        filtered = []
+        for app in all_apps:
+            # Check if categorizable
+            app_id = app.get("id", "").lower()
+            
+            if category == "security":
+                if "security" in app_id or "tools" in app_id or app_id.startswith("ctxos-tools-"):
+                    filtered.append(app)
+            elif category == "system":
+                if "core" in app_id or "desktop" in app_id or "system" in app_id:
+                    filtered.append(app)
+            elif category == "development":
+                if "dev" in app_id or "build" in app_id:
+                    filtered.append(app)
+            # Default to showing everything else if no match, or implement specific logic
+                    
+        return filtered if filtered else all_apps
 
     def get_app_details(self, app_id):
         """Gets full details for a specific app/package (APT or Flatpak)."""

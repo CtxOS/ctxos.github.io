@@ -1,7 +1,13 @@
+Source: debian-base-tools
+Section: misc
+Priority: optional
+Maintainer: CtxOS Team <team@ctxos.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.0
+
 Package: debian-base-tools
-Version: 1.0.0
 Architecture: all
-Maintainer: Debian Base Kit Maintainers
-Depends: htop, vim, fastfetch, tree, jq
-Description: Debian Base System Tools
- This package installs a curated set of system tools for the Debian Base Kit.
+Depends: nmap, wireshark, tcpdump, htop, vim, fastfetch, tree, jq, hexyl, bat, ripgrep, fzf, ncdu, cockpit, strace, ltrace
+Description: CtxOS standard security and analysis tools
+ This package installs the primary toolkit for CtxOS, providing 
+ essential network analysis and system debugging utilities.
