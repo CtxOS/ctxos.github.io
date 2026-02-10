@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# This script builds internal packages (like software-center) 
+# This script builds internal packages (like software-center)
 # and prepares them for inclusion in the Live ISO build.
 
 ROOT_DIR=$(realpath "$(dirname "$0")/..")

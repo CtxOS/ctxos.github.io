@@ -18,10 +18,10 @@ install:
 	cp -r web/* $(DESTDIR)$(PREFIX)/lib/software-center/web/
 	cp webview_launcher.py $(DESTDIR)$(PREFIX)/lib/software-center/
 	cp frontend/gtk/main.py $(DESTDIR)$(PREFIX)/lib/software-center/main_gtk.py
-	
+
 	cp bin/software-center-gtk $(DESTDIR)$(PREFIX)/bin/
 	cp bin/software-center-webview $(DESTDIR)$(PREFIX)/bin/
-	
+
 	cp backend/dbus/org.ctxos.SoftwareCenter.conf $(DESTDIR)/etc/dbus-1/system.d/
 	cp backend/dbus/org.ctxos.SoftwareCenter.service $(DESTDIR)/lib/systemd/system/
 	cp polkit/org.ctxos.softwarecenter.policy $(DESTDIR)$(PREFIX)/share/polkit-1/actions/

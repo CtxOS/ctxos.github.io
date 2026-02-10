@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-import sys
-import json
 import argparse
-from api.apps import AppManager
+import json
+
 from api.actions import ActionManager
+from api.apps import AppManager
+
 
 class SoftwareCenterDaemon:
     def __init__(self):
@@ -30,25 +31,24 @@ class SoftwareCenterDaemon:
         else:
             return {"error": "Unknown action"}
 
+
 def cli_interface():
     daemon = SoftwareCenterDaemon()
     parser = argparse.ArgumentParser(description="Software Center Backend CLI")
-    parser.add_argument("action", help="Action to perform (list_featured, list_all, get_details, install, remove, search)")
+    parser.add_argument(
+        "action",
+        help="Action to perform (list_featured, list_all, get_details, install, remove, search)",
+    )
     parser.add_argument("--id", help="Package ID for details/install/remove")
     parser.add_argument("--query", help="Search query")
 
     args = parser.parse_args()
-    
-    request = {
-        "action": args.action,
-        "params": {
-            "id": args.id,
-            "query": args.query
-        }
-    }
-    
+
+    request = {"action": args.action, "params": {"id": args.id, "query": args.query}}
+
     result = daemon.handle_request(request)
     print(json.dumps(result, indent=2))
+
 
 if __name__ == "__main__":
     cli_interface()

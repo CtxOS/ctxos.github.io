@@ -1,6 +1,7 @@
 import json
-import os
 import locale
+import os
+
 
 class I18nProvider:
     """Provides translation services for the Software Center."""
@@ -16,11 +17,11 @@ class I18nProvider:
             # Try to get system locale
             lang = locale.getdefaultlocale()[0]
             if lang:
-                lang = lang.split('_')[0]
+                lang = lang.split("_")[0]
                 # Check if we support this language
                 if os.path.exists(os.path.join(self.locales_dir, f"{lang}.json")):
                     return lang
-        except:
+        except Exception:
             pass
         return "en"  # Default
 
@@ -28,7 +29,7 @@ class I18nProvider:
         """Load translation file."""
         path = os.path.join(self.locales_dir, f"{lang}.json")
         try:
-            with open(path, 'r', encoding='utf-8') as f:
+            with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception as e:
             print(f"Error loading translations for {lang}: {e}")

@@ -1,0 +1,4 @@
+# List packages to install, one per line
+# Example:
+# python3
+# python3-dev

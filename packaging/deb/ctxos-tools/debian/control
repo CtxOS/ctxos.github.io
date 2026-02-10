@@ -9,5 +9,5 @@ Package: ctxos-tools
 Architecture: all
 Depends: ctxos-tools-web, ctxos-tools-wireless, ctxos-tools-forensics, ctxos-tools-reversing, ctxos-tools-automotive, debian-base-tools
 Description: CtxOS Complete Security Suite
- This master meta-package installs the entire CtxOS security ecosystem, 
+ This master meta-package installs the entire CtxOS security ecosystem,
  including all specialized stacks (Web, Wireless, Forensics, Reversing, Automotive).

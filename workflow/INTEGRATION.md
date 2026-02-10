@@ -96,10 +96,10 @@ Edit `workflow/app/ctxos/page.tsx`:
   id: "mod-your-module",
   type: "module",
   position: { x: 50, y: 580 },
-  data: { 
-    label: "Your Module", 
-    description: "Module description", 
-    packages: "5" 
+  data: {
+    label: "Your Module",
+    description: "Module description",
+    packages: "5"
   },
 }
 ```
@@ -111,10 +111,10 @@ Edit `workflow/app/ctxos/page.tsx`:
   id: "script-your-script",
   type: "script",
   position: { x: 350, y: 580 },
-  data: { 
-    label: "your-script.sh", 
-    description: "Script purpose", 
-    output: "Output type" 
+  data: {
+    label: "your-script.sh",
+    description: "Script purpose",
+    output: "Output type"
   },
 }
 ```
@@ -122,10 +122,10 @@ Edit `workflow/app/ctxos/page.tsx`:
 ### Connecting Nodes
 
 ```typescript
-{ 
-  id: "e-new", 
-  source: "mod-your-module", 
-  target: "script-your-script" 
+{
+  id: "e-new",
+  source: "mod-your-module",
+  target: "script-your-script"
 }
 ```
 

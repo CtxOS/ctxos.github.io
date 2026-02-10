@@ -58,12 +58,12 @@ while [ "$WAITTIME" -lt "80" ]; do
     fi
     usleep 100000
   done
-  
+
   test -s "$T-2" || break
   WAITING=0
   cat "$T-2" >"$T"
   WAITTIME=$[WAITTIME+1]
-  
+
 done
 
 if  [ "$WAITTIME" -ge "80" ]; then
@@ -93,7 +93,7 @@ $SENDPROBE $SADDR $DADDR $SPORT $DPORT $SEQ $ACK
 sleep 2
 kill "$TPID" 2>/dev/null
 
-echo 
+echo
 echo "TRACE RESULTS"
 echo "-------------"
 
@@ -114,5 +114,4 @@ echo
 
 rm -f "$T"
 
-exit 1 
-
+exit 1

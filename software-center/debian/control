@@ -8,14 +8,14 @@ Homepage: https://github.com/ctxos/software-center
 
 Package: software-center
 Architecture: all
-Depends: ${python3:Depends}, ${misc:Depends}, 
-         python3-gi, 
-         python3-pydbus, 
-         python3-webview, 
-         libadwaita-1-0, 
-         flatpak, 
-         timeshift | snapper, 
+Depends: ${python3:Depends}, ${misc:Depends},
+         python3-gi,
+         python3-pydbus,
+         python3-webview,
+         libadwaita-1-0,
+         flatpak,
+         timeshift | snapper,
          appstream
 Description: Professional Software Center for CtxOS
- A modern, secure software management interface supporting APT, 
+ A modern, secure software management interface supporting APT,
  meta-packages, and Flatpaks with system restore integration.

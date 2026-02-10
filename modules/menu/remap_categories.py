@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
 import os
-import re
 
 # Precise Mapping configuration
 MAPPING = {
@@ -10,16 +8,13 @@ MAPPING = {
     "sublist3r": "01-info-gathering;",
     "amass": "01-info-gathering;",
     "theharvester": "01-07-osint-analysis;01-info-gathering;",
-    
     # 02 Vulnerability Analysis
     "nikto": "02-01-web-vulnerability-scanners;02-vulnerability-analysis;",
     "metasploit": "04-exploitation-tools;02-vulnerability-analysis;",
-    
     # 03 Web Application Analysis
     "sqlmap": "04-06-db-exploit;03-webapp-analysis;",
     "wpscan": "03-05-cms-scanners;03-webapp-analysis;",
     "burpsuite": "03-webapp-analysis;",
-    
     # 05 Password Attacks
     "john": "05-02-offline-attacks;05-password-attacks;",
     "hashcat": "05-02-offline-attacks;05-password-attacks;",
@@ -76,6 +71,7 @@ KEYWORDS = [
 
 DESKTOP_DIR = "files/desktop-files"
 
+
 def remap_categories():
     if not os.path.exists(DESKTOP_DIR):
         print(f"Error: Directory {DESKTOP_DIR} not found.")
@@ -90,30 +86,30 @@ def remap_categories():
         # Strip extension and common prefix
         tool_name = filename.replace(".desktop", "").lower()
         clean_name = tool_name.replace("ctxos-", "")
-        
+
         with open(filepath, "r") as f:
             lines = f.readlines()
 
         found_category = None
-        
+
         # 1. Check exact match in MAPPING
         if clean_name in MAPPING:
             found_category = MAPPING[clean_name]
-        
+
         # 2. Check prefix match (e.g. nmap-gui -> nmap)
         if not found_category:
             for key in MAPPING:
                 if clean_name.startswith(key):
                     found_category = MAPPING[key]
                     break
-        
+
         # 3. Keyword match (anywhere in clean_name)
         if not found_category:
             for kw, cat in KEYWORDS:
                 if kw in clean_name:
                     found_category = cat
                     break
-        
+
         if found_category:
             new_lines = []
             category_set = False
@@ -125,17 +121,18 @@ def remap_categories():
                     category_set = True
                 else:
                     new_lines.append(line)
-            
+
             if not category_set:
                 new_lines.append(f"Categories={found_category}\n")
 
             with open(filepath, "w") as f:
                 f.writelines(new_lines)
-            
+
             count += 1
             # print(f"Categorized {filename} -> {found_category}")
 
     print(f"✅ Successfully remapped categories for {count} desktop files.")
+
 
 if __name__ == "__main__":
     remap_categories()

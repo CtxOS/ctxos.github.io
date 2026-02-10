@@ -1,6 +1,8 @@
 import threading
 import time
+
 from api.actions import ActionManager
+
 
 class UpdateTracker:
     """Background service to monitor for system updates."""
@@ -25,21 +27,22 @@ class UpdateTracker:
             try:
                 # Update cache
                 self.actions.update_cache()
-                
+
                 # Check for updates count (simplified for mock)
                 # In real system: apt-get upgrade -s | grep "^Inst" | wc -l
                 count = self._get_update_count()
-                
+
                 if count > 0:
                     self.callback(count)
-                
+
             except Exception as e:
                 print(f"[UpdateTracker] Error: {e}")
-            
+
             time.sleep(interval)
 
     def _get_update_count(self):
         # Mocking update count for demo
         # In real life, we would parse apt output
         import random
+
         return random.randint(0, 5) if random.random() > 0.7 else 0

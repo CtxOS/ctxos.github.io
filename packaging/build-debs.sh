@@ -18,10 +18,10 @@ BUILD_DIR="$BASE_DIR/../build/debs"
 VERSION=$(cat "$BASE_DIR/../VERSION" || echo "1.0.1")
 
 PACKAGES=(
-    "ctxos-core" 
+    "ctxos-core"
     "ctxos-configs-zsh"
     "0trace"
-    "ctxos-menu"    "debian-base-desktop" 
+    "ctxos-menu"    "debian-base-desktop"
     "debian-base-tools"
     "ctxos-tools-web"
     "ctxos-tools-wireless"
@@ -37,7 +37,7 @@ mkdir -p "$BUILD_DIR"
 for pkg in "${PACKAGES[@]}"; do
     PKG_PATH="$DEB_DIR/$pkg"
     log "▶ Building $pkg..."
-    
+
     if [ -d "$PKG_PATH" ]; then
         if [ -f "$PKG_PATH/debian/control" ]; then
             log "  Building standard Debian package $pkg ($VERSION)..."

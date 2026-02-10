@@ -76,7 +76,7 @@ server {
 EOF
     # Enable NGINX site
     ln -sf "$NGINX_CONF" /etc/nginx/sites-enabled/
-    
+
     if command -v nginx >/dev/null; then
         if nginx -t; then
             if command -v systemctl >/dev/null; then

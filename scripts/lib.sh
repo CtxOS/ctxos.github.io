@@ -9,7 +9,7 @@ install_file() {
     local src="$1"
     local dest="$2"
     local perms="${3:-644}"
-    
+
     log "Installing $src to $dest"
     mkdir -p "$(dirname "$dest")"
     cp "$src" "$dest"

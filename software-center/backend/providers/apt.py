@@ -1,6 +1,5 @@
 import subprocess
-import json
-import re
+
 
 class AptProvider:
     """Provides access to APT and dpkg for package management."""
@@ -12,8 +11,7 @@ class AptProvider:
         """Gets detailed info about a package."""
         try:
             result = subprocess.run(
-                ["apt-cache", "show", package_name],
-                capture_output=True, text=True, check=True
+                ["apt-cache", "show", package_name], capture_output=True, text=True, check=True
             )
             return self._parse_apt_show(result.stdout)
         except (subprocess.CalledProcessError, FileNotFoundError):
@@ -24,7 +22,7 @@ class AptProvider:
                     "Version": "1.0.0",
                     "Description": f"This is a mock description for {package_name}",
                     "Installed-Size": "1024",
-                    "Origin": "ctxos"
+                    "Origin": "ctxos",
                 }
             return None
 
@@ -44,8 +42,7 @@ class AptProvider:
         """Checks if a package is installed."""
         try:
             result = subprocess.run(
-                ["dpkg-query", "-W", "-f='${Status}'", package_name],
-                capture_output=True, text=True
+                ["dpkg-query", "-W", "-f='${Status}'", package_name], capture_output=True, text=True
             )
             return "install ok installed" in result.stdout
         except (subprocess.CalledProcessError, FileNotFoundError):
@@ -71,14 +68,11 @@ class AptProvider:
         """Check for available updates."""
         try:
             # We don't run update here, just list-upgradable
-            result = subprocess.run(
-                ["apt", "list", "--upgradable"],
-                capture_output=True, text=True
-            )
+            result = subprocess.run(["apt", "list", "--upgradable"], capture_output=True, text=True)
             updates = []
-            for line in result.stdout.splitlines()[1:]: # Skip 'Listing...'
-                if '/' in line:
-                    updates.append(line.split('/')[0])
+            for line in result.stdout.splitlines()[1:]:  # Skip 'Listing...'
+                if "/" in line:
+                    updates.append(line.split("/")[0])
             return updates
         except Exception:
             return []

@@ -30,7 +30,7 @@ if [ "${PROFILE:-base}" != "rescue" ]; then
             warn "You can manually enable it later by running: curl -sSL $KEY_URL | sudo bash"
         fi
     fi
-    
+
     if [ -f "files/sources.list.ctxos" ]; then
         log "Configuring system sources.list"
         if [ ! -f /etc/apt/sources.list.bak ] && [ -f /etc/apt/sources.list ]; then
@@ -50,5 +50,3 @@ if [ -f "files/ctxos-upgrade" ]; then
     log "Installing ctxos-upgrade tool"
     install_file "files/ctxos-upgrade" /usr/local/bin/ctxos-upgrade 755
 fi
-
-

@@ -36,7 +36,7 @@ case "$1" in
         SNAPSHOT_NAME="${REPO_NAME}-${VERSION}"
         log "Creating snapshot $SNAPSHOT_NAME..."
         aptly snapshot create "$SNAPSHOT_NAME" from repo "$REPO_NAME"
-        
+
         log "Publishing snapshot..."
         SIGN_FLAGS="-gpg-key=$GPG_KEY"
         if [ "$SKIP_SIGNING" == "true" ]; then

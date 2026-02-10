@@ -2,7 +2,7 @@
 
    p0f - type definitions
    ----------------------
-  
+
    Short and portable names for various integer types.
 
    Copyright (C) 2003-2006 by Michal Zalewski <lcamtuf@coredump.cx>

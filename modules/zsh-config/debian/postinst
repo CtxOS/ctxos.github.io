@@ -6,7 +6,7 @@ if [ "$1" = "configure" ]; then
     if [ -f /etc/skel/.zshrc ]; then
         cp /etc/skel/.zshrc /root/.zshrc
     fi
-    
+
     # Change root shell to zsh if available
     if [ -x /bin/zsh ]; then
         chsh -s /bin/zsh root || true

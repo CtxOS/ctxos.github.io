@@ -1,6 +1,6 @@
-import subprocess
-import os
 import datetime
+import subprocess
+
 
 class SnapshotProvider:
     """Handles system snapshots before major operations."""
@@ -13,9 +13,9 @@ class SnapshotProvider:
         tools = [
             {"cmd": "timeshift", "args": ["--version"]},
             {"cmd": "snapper", "args": ["--version"]},
-            {"cmd": "btrfs", "args": ["version"]}
+            {"cmd": "btrfs", "args": ["version"]},
         ]
-        
+
         for tool in tools:
             try:
                 subprocess.run([tool["cmd"]] + tool["args"], capture_output=True, check=True)
@@ -28,7 +28,7 @@ class SnapshotProvider:
         """Creates a system snapshot."""
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
         description = f"SoftwareCenter_{comment}_{timestamp}"
-        
+
         if self.tool == "timeshift":
             cmd = ["timeshift", "--create", "--comments", description, "--tags", "O"]
         elif self.tool == "snapper":

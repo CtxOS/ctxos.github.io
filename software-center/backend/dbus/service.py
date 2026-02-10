@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
-import os
-import sys
 import json
 import logging
+import os
+import sys
+
 from gi.repository import GLib
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(name)s: %(message)s'
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("ctxos.software-center")
 
 # Try to import pydbus, if not available (Mac development), we'll mock the server logic
 try:
     from pydbus import SessionBus
+
     HAS_PYDBUS = True
 except ImportError:
     HAS_PYDBUS = False
@@ -22,22 +21,26 @@ except ImportError:
 
 # Add parent directory to path to import API
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from api.apps import AppManager
-from api.actions import ActionManager
-from api.update_monitor import UpdateMonitor
+from api.actions import ActionManager  # noqa: E402
+from api.apps import AppManager  # noqa: E402
+from api.update_monitor import UpdateMonitor  # noqa: E402
+
 
 class SoftwareCenterService:
     """
     DBus Service implementation for the Software Center.
     This class matches the interface.xml definition.
     """
+
     dbus = open(os.path.join(os.path.dirname(__file__), "interface.xml")).read()
 
     def __init__(self):
         self.app_manager = AppManager()
         self.action_manager = ActionManager()
         # Start background update monitor
-        self.monitor = UpdateMonitor(self._on_updates_detected, interval=1800) # Check every 30 mins
+        self.monitor = UpdateMonitor(
+            self._on_updates_detected, interval=1800
+        )  # Check every 30 mins
         self.monitor.start()
 
     def _on_updates_detected(self, count):
@@ -46,7 +49,7 @@ class SoftwareCenterService:
         # We need a reference to the published object to emit signals if using pydbus
         logger.debug(f"Emitting UpdatesAvailable signal with count={count}")
         # In pydbus, signals are emitted by calling the signal name on the published object
-        if hasattr(self, 'emit_updates_available'):
+        if hasattr(self, "emit_updates_available"):
             self.emit_updates_available(count)
 
     def ListFeatured(self):
@@ -88,6 +91,7 @@ class SoftwareCenterService:
         result = self.action_manager.update_cache()
         return json.dumps(result)
 
+
 def run_service():
     if not HAS_PYDBUS:
         logger.info("Mocking service start for development...")
@@ -95,13 +99,14 @@ def run_service():
 
     bus = SessionBus()
     bus.publish("org.ctxos.SoftwareCenter", SoftwareCenterService())
-    
+
     logger.info("Software Center DBus Service is running...")
     loop = GLib.MainLoop()
     try:
         loop.run()
     except KeyboardInterrupt:
         loop.quit()
+
 
 if __name__ == "__main__":
     run_service()

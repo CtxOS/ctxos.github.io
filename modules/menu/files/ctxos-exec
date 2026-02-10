@@ -38,13 +38,13 @@ print_warning() {
 # Function to detect command type
 detect_command_type() {
     local cmd="$1"
-    
+
     # Check if it's a service command
     if [[ "$cmd" =~ ^(service|systemctl) ]]; then
         echo "service"
         return
     fi
-    
+
     # Check if it's a known GUI application
     if command -v "$cmd" &> /dev/null; then
         # Check if command has a desktop file (likely GUI)
@@ -53,7 +53,7 @@ detect_command_type() {
             echo "gui"
             return
         fi
-        
+
         # Check common GUI apps
         case "$cmd" in
             wireshark|burpsuite|ghidra|ida|sqlitebrowser|firefox|chromium|code|gedit|nautilus)
@@ -62,7 +62,7 @@ detect_command_type() {
                 ;;
         esac
     fi
-    
+
     # Default to CLI
     echo "cli"
 }
@@ -75,10 +75,10 @@ is_gui_environment() {
 # Function to execute CLI command
 execute_cli() {
     local cmd="$*"
-    
+
     print_info "Executing CLI command: $cmd"
     echo "========================================"
-    
+
     if eval "$cmd"; then
         echo "========================================"
         print_success "Command completed successfully"
@@ -94,9 +94,9 @@ execute_cli() {
 # Function to execute GUI application
 execute_gui() {
     local cmd="$*"
-    
+
     print_info "Launching GUI application: $cmd"
-    
+
     # Run in background and detach from terminal
     if is_gui_environment; then
         nohup $cmd </dev/null >/dev/null 2>&1 &
@@ -113,11 +113,11 @@ execute_gui() {
 # Function to execute service command
 execute_service() {
     local cmd="$*"
-    
+
     # Extract service name and action
     local service=""
     local action=""
-    
+
     if [[ "$cmd" =~ systemctl[[:space:]]+([a-z]+)[[:space:]]+([a-z0-9.-]+) ]]; then
         action="${BASH_REMATCH[1]}"
         service="${BASH_REMATCH[2]}"
@@ -125,7 +125,7 @@ execute_service() {
         service="${BASH_REMATCH[1]}"
         action="${BASH_REMATCH[2]}"
     fi
-    
+
     if [ -n "$service" ] && [ -n "$action" ]; then
         # Use servicexc if available
         if command -v servicexc &> /dev/null; then
@@ -133,7 +133,7 @@ execute_service() {
             return $?
         fi
     fi
-    
+
     # Fallback to direct execution
     execute_cli "$cmd"
 }
@@ -180,7 +180,7 @@ main() {
     local force_type=""
     local background=false
     local wait_mode=false
-    
+
     # Parse options
     while [[ $# -gt 0 ]]; do
         case "$1" in
@@ -210,26 +210,26 @@ main() {
                 ;;
         esac
     done
-    
+
     # Check if command provided
     if [ $# -eq 0 ]; then
         print_error "No command specified"
         show_help
         exit 1
     fi
-    
+
     # Get command
     local cmd="$*"
     local first_cmd="$1"
-    
+
     # Determine command type
     local cmd_type="${force_type:-${CTXOS_EXEC_TYPE:-}}"
     if [ -z "$cmd_type" ]; then
         cmd_type=$(detect_command_type "$first_cmd")
     fi
-    
+
     print_info "Command type: $cmd_type"
-    
+
     # Execute based on type
     case "$cmd_type" in
         cli)
@@ -250,7 +250,7 @@ main() {
             exit 1
             ;;
     esac
-    
+
     return $?
 }
 

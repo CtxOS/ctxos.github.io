@@ -6,19 +6,19 @@
 /usr/bin/firefox {
   #include <abstractions/base>
   #include <abstractions/nameservice>
-  
+
   # Allow reading common libraries
   /usr/lib/firefox/** mr,
-  
+
   # Allow access to user profile
   owner @{HOME}/.mozilla/** rwk,
   owner @{HOME}/Downloads/ rwk,
-  
+
   # Deny sensitive areas
   deny /etc/shadow r,
   deny /etc/passwd r,
   deny /root/** r,
-  
+
   # Allow networking
   network inet stream,
   network inet6 stream,

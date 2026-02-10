@@ -9,5 +9,5 @@ Package: ctxos-menu
 Architecture: all
 Depends: ${misc:Depends}, hicolor-icon-theme
 Description: CtxOS Application Menu and Wrappers
- Professional application menu, desktop entries, icons, and shell wrappers 
+ Professional application menu, desktop entries, icons, and shell wrappers
  for the CtxOS security ecosystem.

@@ -1,10 +1,12 @@
-import subprocess
-import os
 import logging
-from providers.snapshot import SnapshotProvider
+import os
+import subprocess
+
 from api.health import HealthChecker
+from providers.snapshot import SnapshotProvider
 
 logger = logging.getLogger("ctxos.actions")
+
 
 class ActionManager:
     """Handles installation and removal of packages with safety guards."""
@@ -26,12 +28,14 @@ class ActionManager:
             cmd = ["flatpak", "install", "-y", "flathub", package_id]
         else:
             cmd = ["apt-get", "install", "-y", package_id]
-        
+
         result = self._run_command(cmd)
-        
+
         # If install failed and we have a snapshot, we could rollback or just report
         if not result["success"] and snapshot_desc:
-            logger.error(f"Install failed. Snapshot {snapshot_desc} is available for manual rollback.")
+            logger.error(
+                f"Install failed. Snapshot {snapshot_desc} is available for manual rollback."
+            )
 
         return result
 
@@ -56,27 +60,20 @@ class ActionManager:
             # We use env to ensure non-interactive
             env = os.environ.copy()
             env["DEBIAN_FRONTEND"] = "noninteractive"
-            
+
             # Using Popen to eventually support progress tracking
             process = subprocess.Popen(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                env=env
+                cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=env
             )
-            
+
             # For Phase 1, we just wait and return output
             # Phase 2 will involve streaming this to the UI
             stdout, stderr = process.communicate()
-            
+
             return {
                 "success": process.returncode == 0,
                 "output": stdout,
-                "exit_code": process.returncode
+                "exit_code": process.returncode,
             }
         except Exception as e:
-            return {
-                "success": False,
-                "error": str(e)
-            }
+            return {"success": False, "error": str(e)}

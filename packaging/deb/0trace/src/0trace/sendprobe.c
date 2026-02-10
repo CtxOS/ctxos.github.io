@@ -45,9 +45,9 @@ static _u8 synpacket[] = {
   /* wss   */  0xFF, 0xFF,
   /* cksum */  0x00, 0x00,   /* cksum: [36] */
   /* urg   */  0x00, 0x00,
-  
+
   0, 0
-  
+
 };
 
 
@@ -62,7 +62,7 @@ _u16 simple_tcp_cksum(void) {
   }
 
   p = synpacket + 12;
-  
+
   for (i=0;i<4;i++) {
     sum += (*p << 8) + *(p+1);
     p+=2;
@@ -82,18 +82,18 @@ int main(int argc, char** argv) {
   _u16 sp,dp,ck;
   _u32 seq, ack, seq_o;
 
-  if (argc - 7 || (sad=inet_addr(argv[1])) == INADDR_NONE || 
+  if (argc - 7 || (sad=inet_addr(argv[1])) == INADDR_NONE ||
      (dad=inet_addr(argv[2])) == INADDR_NONE || !(sp=atoi(argv[3])) ||
      !(dp=atoi(argv[4])) || (sscanf(argv[5],"%lu",&seq_o) != 1) ||
      (sscanf(argv[6],"%lu",&ack) != 1)) {
     fprintf(stderr,"Usage: %s src_ip dst_ip sport dport seq ack\n",argv[0]);
     exit(1);
   }
-  
+
   sock=socket(AF_INET,SOCK_RAW,IPPROTO_RAW);
-  
+
   if (sock<0) fatal("socket");
-  
+
   if (setsockopt(sock,IPPROTO_IP,IP_HDRINCL,(char *)&one,sizeof(one)))
     fatal("setsockopt");
 
@@ -113,9 +113,9 @@ int main(int argc, char** argv) {
 
     seq=htonl(seq_o+d);
     memcpy(synpacket+24,&seq,4);
-  
+
     for (i=0;i<MAXDIST;i++) {
-  
+
       synpacket[4] = i;
       synpacket[8] = i;
 
@@ -132,6 +132,5 @@ int main(int argc, char** argv) {
   }
 
   return 0;
-    
-}
 
+}

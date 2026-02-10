@@ -6,19 +6,19 @@
     <method name="ListFeatured">
       <arg type="s" name="json_apps" direction="out"/>
     </method>
-    
+
     <!-- Returns a JSON string of all available apps, optionally filtered -->
     <method name="ListAll">
       <arg type="s" name="category" direction="in"/>
       <arg type="s" name="json_apps" direction="out"/>
     </method>
-    
+
     <!-- Returns full details for a specific app -->
     <method name="GetAppDetails">
       <arg type="s" name="app_id" direction="in"/>
       <arg type="s" name="json_details" direction="out"/>
     </method>
-    
+
     <!-- Search for apps -->
     <method name="SearchApps">
       <arg type="s" name="query" direction="in"/>
@@ -29,7 +29,7 @@
     <method name="Install">
       <arg type="s" name="app_id" direction="in"/>
     </method>
-    
+
     <!-- Removal (will be gated by Polkit) -->
     <method name="Remove">
       <arg type="s" name="app_id" direction="in"/>
@@ -39,7 +39,7 @@
     <method name="SwitchProfile">
       <arg type="s" name="app_id" direction="in"/>
     </method>
-    
+
     <!-- Update System (will be gated by Polkit) -->
     <method name="Update">
     </method>
@@ -50,7 +50,7 @@
       <arg type="i" name="percent"/>
       <arg type="s" name="message"/>
     </signal>
-    
+
     <signal name="OperationFinished">
       <arg type="s" name="app_id"/>
       <arg type="b" name="success"/>

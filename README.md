@@ -1,7 +1,7 @@
 # 🚀 CtxOS — The Ultimate Distribution Factory
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE.txt)  
-[![Build Status](https://github.com/CtxOS/CtxOS/actions/workflows/software-center.yml/badge.svg)](https://github.com/CtxOS/CtxOS/actions)  
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE.txt)
+[![Build Status](https://github.com/CtxOS/CtxOS/actions/workflows/software-center.yml/badge.svg)](https://github.com/CtxOS/CtxOS/actions)
 [![Latest Release](https://img.shields.io/github/v/release/CtxOS/CtxOS)](https://github.com/CtxOS/CtxOS/releases)
 
 ---
@@ -12,14 +12,14 @@ The **Debian Base Kit** is a professional-grade, modular toolkit to build, manag
 
 From single commands to automated pipelines, it empowers distro maintainers and developers with:
 
-- Multi-architecture (x86_64, ARM64, RISC-V, Raspberry Pi) image builds  
-- Unified package management (APT + Flatpak + Meta-packages)  
-- Advanced system services secured via DBus & Polkit  
-- Proactive auto-updates, snapshot-protected migrations & rollback  
-- Fully localized UI with hardware-aware intelligent stack suggestions  
-- Integrated CI/CD pipeline with release orchestration and live ISO generation  
-- Docker, VM, and WSL2 development environments for portability  
-- Centralized archive, mirror sync, and project packaging system  
+- Multi-architecture (x86_64, ARM64, RISC-V, Raspberry Pi) image builds
+- Unified package management (APT + Flatpak + Meta-packages)
+- Advanced system services secured via DBus & Polkit
+- Proactive auto-updates, snapshot-protected migrations & rollback
+- Fully localized UI with hardware-aware intelligent stack suggestions
+- Integrated CI/CD pipeline with release orchestration and live ISO generation
+- Docker, VM, and WSL2 development environments for portability
+- Centralized archive, mirror sync, and project packaging system
 
 ---
 
@@ -41,22 +41,22 @@ From single commands to automated pipelines, it empowers distro maintainers and 
 
 ## 🎯 Key Features
 
-### Multi-Format Package Management  
+### Multi-Format Package Management
 Seamlessly manage APT and Flatpak packages alongside custom meta-packages with smart installation logic.
 
-### Intelligent Profile Switching  
+### Intelligent Profile Switching
 Switch between Server, Desktop, and Developer profiles with guided impact analysis and snapshot safety.
 
-### Self-Healing System  
+### Self-Healing System
 Live update monitoring with transactional package installs and automatic rollback on failure.
 
-### Global Localization  
+### Global Localization
 Dynamic, JSON-driven translations with fallback and support for adding your own languages.
 
-### Cross-Platform Development  
+### Cross-Platform Development
 Develop and test inside Docker containers, Virtual Machines, or Windows Subsystem for Linux (WSL2).
 
-### Automated Release & CI/CD  
+### Automated Release & CI/CD
 One-command full release orchestration with changelog generation, artifact publishing, and ISO creation.
 
 ---
@@ -65,10 +65,10 @@ One-command full release orchestration with changelog generation, artifact publi
 
 ### Prerequisites
 
-- Debian-based development host (Ubuntu, Debian, etc.)  
-- Python 3.9+ and dependencies (`pip install -r requirements.txt`)  
-- Docker (optional, for containerized dev environment)  
-- QEMU + KVM (optional, for VM testing)  
+- Debian-based development host (Ubuntu, Debian, etc.)
+- Python 3.9+ and dependencies (`pip install -r requirements.txt`)
+- Docker (optional, for containerized dev environment)
+- QEMU + KVM (optional, for VM testing)
 
 ### Quickstart
 

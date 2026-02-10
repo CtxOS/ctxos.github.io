@@ -12,12 +12,12 @@ error() { echo -e "\033[0;31m[ERROR]\033[0m $1"; exit 1; }
 build_project() {
     local name=$1
     log "Processing project: $name"
-    
+
     # In a real tool, we'd use yq to parse the yaml
     # For this prototype, we'll grep the path
     local path
     path=$(grep -A 3 "name: \"$name\"" "$MANIFEST" | grep "path:" | cut -d'"' -f2)
-    
+
     if [ ! -d "$path" ]; then
         error "Project path $path not found for $name"
     fi

@@ -9,5 +9,5 @@ Package: debian-base-tools
 Architecture: all
 Depends: nmap, wireshark, tcpdump, htop, vim, fastfetch, tree, jq, hexyl, bat, ripgrep, fzf, ncdu, cockpit, strace, ltrace
 Description: CtxOS standard security and analysis tools
- This package installs the primary toolkit for CtxOS, providing 
+ This package installs the primary toolkit for CtxOS, providing
  essential network analysis and system debugging utilities.

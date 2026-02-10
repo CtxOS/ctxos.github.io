@@ -33,7 +33,7 @@ notify() {
     local title="$1"
     local message="$2"
     local type="${3:-info}" # info, success, error, warning
-    
+
     if command -v notify-send &> /dev/null; then
         case "$type" in
             success)
@@ -63,7 +63,7 @@ check_root() {
 # Function to get service status
 get_service_status() {
     local service="$1"
-    
+
     if systemctl is-active --quiet "$service" 2>/dev/null; then
         echo "running"
     elif systemctl is-enabled --quiet "$service" 2>/dev/null; then
@@ -77,42 +77,42 @@ get_service_status() {
 execute_service_command() {
     local service="$1"
     local action="$2"
-    
+
     print_info "Service: $service"
     print_info "Action: $action"
     echo ""
-    
+
     # Check if service exists
     if ! systemctl list-unit-files | grep -q "^${service}.service"; then
         print_error "Service '$service' not found"
         notify "Service Error" "Service '$service' is not installed" "error"
         return 1
     fi
-    
+
     # Get current status
     local status=$(get_service_status "$service")
     print_info "Current status: $status"
     echo ""
-    
+
     # Execute action with sudo if needed
     local cmd="systemctl $action $service"
-    
+
     if ! check_root; then
         print_warning "Root privileges required. Requesting sudo..."
         cmd="sudo $cmd"
     fi
-    
+
     print_info "Executing: $cmd"
     echo "========================================"
-    
+
     if eval "$cmd"; then
         echo "========================================"
         print_success "Command completed successfully"
-        
+
         # Get new status
         local new_status=$(get_service_status "$service")
         print_info "New status: $new_status"
-        
+
         notify "Service $action" "Service '$service' $action completed successfully" "success"
         return 0
     else
@@ -129,7 +129,7 @@ main() {
     echo "  CtxOS Service Manager"
     echo "========================================"
     echo ""
-    
+
     # Check arguments
     if [ $# -lt 2 ]; then
         print_error "Invalid arguments"
@@ -147,10 +147,10 @@ main() {
         notify "Service Manager" "Invalid arguments provided" "error"
         return 1
     fi
-    
+
     local service="$1"
     local action="$2"
-    
+
     # Validate action
     case "$action" in
         start|stop|restart|status|enable|disable|reload)
@@ -164,14 +164,14 @@ main() {
             return 1
             ;;
     esac
-    
+
     local exit_code=$?
-    
+
     echo ""
     echo "========================================"
     echo "Press Enter to close..."
     read
-    
+
     return $exit_code
 }
 

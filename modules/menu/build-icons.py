@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+
 from PIL import Image
 
 # Use 256x256 directory as the "master" source.
@@ -11,12 +12,13 @@ SOURCE_DIR = "menu-icons/hicolor/256x256/apps/"
 TARGET_SIZES = [16, 24, 32, 48]
 # Also, we exclude 256 from this list because it is the source itself.
 
+
 def process_all_icons():
     if not os.path.exists(SOURCE_DIR):
         print(f"Source directory not found: {SOURCE_DIR}")
         return
 
-    files = [f for f in os.listdir(SOURCE_DIR) if f.endswith('.png')]
+    files = [f for f in os.listdir(SOURCE_DIR) if f.endswith(".png")]
     total_files = len(files)
 
     if total_files == 0:
@@ -31,7 +33,6 @@ def process_all_icons():
         try:
             with Image.open(source_path) as img:
                 for size in TARGET_SIZES:
-
                     dir_1x = f"menu-icons/hicolor/{size}x{size}/apps/"
                     if not os.path.exists(dir_1x):
                         os.makedirs(dir_1x)
@@ -53,6 +54,7 @@ def process_all_icons():
             print(f"[!] Error processing {filename}: {e}")
 
     print("[!] Complete generation finished.")
+
 
 if __name__ == "__main__":
     process_all_icons()

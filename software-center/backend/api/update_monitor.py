@@ -1,13 +1,16 @@
+import subprocess
 import threading
 import time
-import subprocess
+
 from providers.apt import AptProvider
 from providers.flatpak import FlatpakProvider
+
 
 class UpdateMonitor(threading.Thread):
     """
     Background thread that checks for updates periodically.
     """
+
     def __init__(self, callback, interval=3600):
         super().__init__()
         self.callback = callback
@@ -25,7 +28,7 @@ class UpdateMonitor(threading.Thread):
             if update_count > 0:
                 print(f"[UpdateMonitor] Found {update_count} updates!")
                 self.callback(update_count)
-            
+
             # Wait for interval, but check running flag frequently
             for _ in range(self.interval):
                 if not self.running:
@@ -34,7 +37,7 @@ class UpdateMonitor(threading.Thread):
 
     def check_updates(self):
         count = 0
-        
+
         # Check APT updates
         try:
             apt_updates = self.apt.get_updates()
@@ -46,12 +49,10 @@ class UpdateMonitor(threading.Thread):
         if self.flatpak.has_flatpak:
             try:
                 result = subprocess.run(
-                    ["flatpak", "update", "--appstream"],
-                    capture_output=True, text=True
+                    ["flatpak", "update", "--appstream"], capture_output=True, text=True
                 )
                 result = subprocess.run(
-                    ["flatpak", "remote-ls", "--updates"],
-                    capture_output=True, text=True
+                    ["flatpak", "remote-ls", "--updates"], capture_output=True, text=True
                 )
                 # Count lines of output (each line is an update)
                 count += len(result.stdout.strip().splitlines())

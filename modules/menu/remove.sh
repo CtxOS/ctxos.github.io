@@ -6,7 +6,7 @@ log "Removing menu module configurations"
 if [ -f "/etc/dconf/db/local.d/90-ctxos-menu" ]; then
     log "Removing GNOME app-folder configuration"
     rm -f "/etc/dconf/db/local.d/90-ctxos-menu"
-    
+
     if command -v dconf &> /dev/null; then
         dconf update
     fi

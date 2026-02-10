@@ -7,7 +7,7 @@ The **CtxOS Software Center** is a professional-grade software management toolki
 ## 🚀 Getting Started
 
 ### Installation
-The software center is provided as a standard Debian package. 
+The software center is provided as a standard Debian package.
 
 ```bash
 # Update your repository
@@ -35,7 +35,7 @@ The Software Center can be launched from your desktop environment's application 
 ## 🛠️ Key Concepts
 
 ### 1. System Profiles (Stacks)
-Unlike traditional app stores, this Software Center is **Profile-Aware**. 
+Unlike traditional app stores, this Software Center is **Profile-Aware**.
 - **Desktop Environment**: A full productivity stack including GUI, browsers, and office tools.
 - **Server Base**: A headless, hardened environment for production workloads.
 - **Development Stack**: Essential compilers, debuggers, and IDEs.
@@ -184,7 +184,7 @@ Define your distribution's project ecosystem here. The master pipeline uses this
 - **Frontend**: GTK4/Libadwaita or HTML/JS (via PyWebView).
 - **Communication**: DBus System Bus.
 - **Auth**: PolicyKit (Polkit).
-- **Providers**: 
+- **Providers**:
   - `apt`: Native package management.
   - `flatpak`: Flathub integration.
   - `meta`: Profile management.

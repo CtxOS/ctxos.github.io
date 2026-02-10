@@ -32,7 +32,7 @@ find_terminal() {
 # Function to show error dialog
 show_error() {
     local message="$1"
-    
+
     # Try zenity first
     if command -v zenity &> /dev/null; then
         zenity --error --title="menuexecg Error" --text="$message" --width=400

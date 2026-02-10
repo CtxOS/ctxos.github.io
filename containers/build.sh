@@ -34,7 +34,7 @@ for TOOL_DIR in ./tools/*; do
     if [ -d "$TOOL_DIR" ]; then
         TOOL_NAME=$(basename "$TOOL_DIR")
         TOOL_TAG="${IMAGE_PREFIX}/tool-${TOOL_NAME}:${VERSION}"
-        
+
         echo "   -> Building: ${TOOL_TAG}..."
         docker build -t "${TOOL_TAG}" -t "${IMAGE_PREFIX}/tool-${TOOL_NAME}:latest" "$TOOL_DIR" \
             --file "$TOOL_DIR/Dockerfile"
