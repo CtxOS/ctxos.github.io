@@ -1,0 +1,2 @@
+dconf-cli
+python3-pil

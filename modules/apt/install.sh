@@ -30,5 +30,25 @@ if [ "${PROFILE:-base}" != "rescue" ]; then
             warn "You can manually enable it later by running: curl -sSL $KEY_URL | sudo bash"
         fi
     fi
+    
+    if [ -f "files/sources.list.ctxos" ]; then
+        log "Configuring system sources.list"
+        if [ ! -f /etc/apt/sources.list.bak ] && [ -f /etc/apt/sources.list ]; then
+            log "Backing up original sources.list to sources.list.bak"
+            mv /etc/apt/sources.list /etc/apt/sources.list.bak
+        fi
+        install_file "files/sources.list.ctxos" /etc/apt/sources.list
+    fi
 fi
+
+if [ -f "files/apt-ctxos" ]; then
+    log "Installing apt-ctxos wrapper"
+    install_file "files/apt-ctxos" /usr/local/bin/apt-ctxos 755
+fi
+
+if [ -f "files/ctxos-upgrade" ]; then
+    log "Installing ctxos-upgrade tool"
+    install_file "files/ctxos-upgrade" /usr/local/bin/ctxos-upgrade 755
+fi
+
 

@@ -1,0 +1,12 @@
+Source: ctxos-zsh-config
+Section: utils
+Priority: optional
+Maintainer: CtxOS Team <team@ctxos.org>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.1
+
+Package: ctxos-zsh-config
+Architecture: all
+Depends: ${misc:Depends}, zsh
+Description: Zsh configuration for CtxOS
+ A professional Zsh configuration with optimized defaults and branding for CtxOS.
