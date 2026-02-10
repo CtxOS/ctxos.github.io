@@ -15,6 +15,7 @@ MODULES=(
     "packaging/deb/ctxos-tools-forensics"
     "packaging/deb/ctxos-tools-reversing"
     "packaging/deb/ctxos-tools-automotive"
+    "packaging/deb/ctxos-tools"
 )
 
 log() { echo -e "\033[0;34m[RELEASE]\033[0m $1"; }
