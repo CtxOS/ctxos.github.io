@@ -47,7 +47,9 @@ if [ -d "files/apparmor" ]; then
     if command -v apparmor_parser &> /dev/null; then
         log "Enabling AppArmor profiles..."
         for p in /etc/apparmor.d/*; do
-            [ -f "$p" ] && apparmor_parser -r "$p" || true
+            if [ -f "$p" ]; then
+                apparmor_parser -r "$p" || true
+            fi
         done
     fi
 fi

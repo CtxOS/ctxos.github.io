@@ -18,3 +18,7 @@ warn() {
 error() {
     echo -e "${COLOR_RED}[ERROR]${COLOR_RESET} $1"
 }
+
+debug() {
+    echo -e "${COLOR_CYAN}[DEBUG]${COLOR_RESET} $1"
+}
