@@ -18,7 +18,7 @@ BUILD_DIR="$BASE_DIR/../build/debs"
 VERSION=$(cat "$BASE_DIR/../VERSION" || echo "1.0.1")
 
 PACKAGES=(
-    "debian-base-core" 
+    "ctxos-core" 
     "debian-base-desktop" 
     "debian-base-tools"
     "ctxos-tools-web"

@@ -36,7 +36,7 @@ docker cp "$CONTAINER_NAME":/app/*.iso ./ || true
 docker cp "$CONTAINER_NAME":/app/VERSION ./VERSION || true
 
 # Copy changelogs back for version sync
-for mod in software-center packaging/deb/debian-base-core packaging/deb/debian-base-desktop packaging/deb/debian-base-tools packaging/deb/ctxos-tools-web packaging/deb/ctxos-tools-wireless packaging/deb/ctxos-tools-forensics packaging/deb/ctxos-tools-reversing packaging/deb/ctxos-tools-automotive packaging/deb/ctxos-tools; do
+for mod in software-center packaging/deb/ctxos-core packaging/deb/debian-base-desktop packaging/deb/debian-base-tools packaging/deb/ctxos-tools-web packaging/deb/ctxos-tools-wireless packaging/deb/ctxos-tools-forensics packaging/deb/ctxos-tools-reversing packaging/deb/ctxos-tools-automotive packaging/deb/ctxos-tools; do
     docker cp "$CONTAINER_NAME":/app/"$mod"/debian/changelog ./"$mod"/debian/changelog || true
 done
 

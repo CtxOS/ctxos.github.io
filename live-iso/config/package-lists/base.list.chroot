@@ -10,7 +10,7 @@ live-tools
 pciutils
 usbutils
 zenity
-debian-base-core
+ctxos-core
 debian-base-desktop
 debian-base-tools
 software-center

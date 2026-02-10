@@ -7,7 +7,7 @@ VERSION_FILE="VERSION"
 REPO_DIR="packaging/repo"
 MODULES=(
     "software-center" 
-    "packaging/deb/debian-base-core" 
+    "packaging/deb/ctxos-core" 
     "packaging/deb/debian-base-desktop" 
     "packaging/deb/debian-base-tools"
     "packaging/deb/ctxos-tools-web"
