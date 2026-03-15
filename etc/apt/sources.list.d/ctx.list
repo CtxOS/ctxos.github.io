@@ -1,0 +1,1 @@
+deb [signed-by=/usr/share/keyrings/ctxos-archive-key.gpg] https://ctxos.github.io/debian bookworm main

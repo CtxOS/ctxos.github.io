@@ -1,0 +1,36 @@
+{
+  "htmlElements": {
+    "tags": [
+      "a",
+      "body",
+      "div",
+      "footer",
+      "h1",
+      "h2",
+      "head",
+      "hr",
+      "html",
+      "li",
+      "meta",
+      "p",
+      "pre",
+      "strong",
+      "style",
+      "title",
+      "ul"
+    ],
+    "classes": [
+      "breadcrumb",
+      "highlight"
+    ],
+    "ids": [
+      "categories",
+      "ctx-about",
+      "ctx-dev-setup",
+      "ctx-help",
+      "features",
+      "requirements",
+      "usage"
+    ]
+  }
+}

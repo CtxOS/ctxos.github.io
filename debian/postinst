@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "configure" ]; then
+    if [ ! -f /usr/share/keyrings/ctxos-archive-key.gpg ]; then
+        echo "Importing CTX OS Repository Key from GitHub..."
+        curl -sL https://ctxos.github.io/debian/ctxos-archive-key.gpg | gpg --dearmor -o /usr/share/keyrings/ctxos-archive-key.gpg
+    fi
+fi
+
+#DEBHELPER#

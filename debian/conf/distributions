@@ -1,0 +1,7 @@
+Origin: CTX-OS
+Label: CTX OS Repository
+Codename: bookworm
+Architectures: amd64 all
+Components: main
+Description: Official Apt repository for CTX OS
+SignWith: <YOUR_GPG_KEY_ID>

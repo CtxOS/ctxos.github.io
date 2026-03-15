@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CTX OS Architecture</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+        line-height: 1.6;
+        color: #333;
+      }
+      h1 {
+        color: #1a73e8;
+        border-bottom: 2px solid #1a73e8;
+        padding-bottom: 0.5rem;
+      }
+      h2 {
+        color: #1557b0;
+        margin-top: 2rem;
+      }
+      h3 {
+        color: #0d47a1;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 0.75rem;
+        text-align: left;
+      }
+      th {
+        background: #f5f5f5;
+      }
+      code {
+        background: #f4f4f4;
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+      }
+      pre {
+        background: #f4f4f4;
+        padding: 1rem;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .breadcrumb {
+        margin-bottom: 1rem;
+      }
+      .breadcrumb a {
+        color: #1a73e8;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="breadcrumb">
+      <a href="/docs/">← Back to Documentation</a>
+    </div>
+
+    <h1>CTX OS Architecture</h1>
+
+    <h2>The Core Philosophy</h2>
+    <p>
+      CTX OS operates as a <strong>Configuration Layer</strong>. It does not replace the Debian
+      base; it optimizes it. By using a modular postinst logic and custom
+      <code>/etc/</code> includes, we ensure that system updates from Debian never overwrite CTX OS
+      optimizations.
+    </p>
+
+    <h2>1. The Apt Pipeline (Repository Layer)</h2>
+    <p>
+      CTX OS uses a "Single Source of Truth" model. The repository is hosted as a static site on
+      GitHub Pages, but it is cryptographically secured.
+    </p>
+    <ul>
+      <li><strong>Integrity:</strong> Every package is signed with a 4096-bit GPG key.</li>
+      <li>
+        <strong>Availability:</strong> By leveraging GitHub's CDN, the OS can be deployed globally
+        with zero downtime.
+      </li>
+      <li>
+        <strong>Automation:</strong> New versions are injected via reprepro, which updates the
+        Packages.gz and InRelease files automatically.
+      </li>
+    </ul>
+
+    <h2>2. Database & Resource Tuning</h2>
+    <p>
+      Instead of modifying the main <code>postgresql.conf</code>, CTX OS uses an Include Directory
+      strategy.
+    </p>
+    <ul>
+      <li>
+        <strong>The Logic:</strong> We inject a line into the main config:
+        <code>include = 'ctx_postgresql.conf'</code>.
+      </li>
+      <li>
+        <strong>The Optimization:</strong> We specifically tune <code>shared_buffers</code>,
+        <code>effective_cache_size</code>, and <code>work_mem</code> based on modern workstation
+        standards rather than the conservative Debian defaults. This ensures that developer
+        environments handle heavy queries without manual tuning.
+      </li>
+    </ul>
+
+    <h2>3. Hardware & Security (Udev)</h2>
+    <p>One of the most powerful features of CTX OS is the seamless hardware integration.</p>
+    <ul>
+      <li>
+        <strong>U2F/FIDO Security:</strong> We ship custom udev rules in
+        <code>/etc/udev/rules.d/</code>. This allows non-root users to interact with security keys
+        (like HyperFIDO or Yubikey) without needing sudo.
+      </li>
+      <li>
+        <strong>Device Mapping:</strong> When a recognized device is plugged in, the system
+        automatically assigns the uaccess tag, enabling instant web-browser authentication for the
+        logged-in user.
+      </li>
+    </ul>
+
+    <h2>4. System Hierarchy Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>Component</th>
+          <th>Path</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Application</td>
+          <td>Dev Tools / Templates</td>
+          <td><code>/etc/skel/Templates</code></td>
+        </tr>
+        <tr>
+          <td>Configuration</td>
+          <td>UI / Shell / State</td>
+          <td><code>/etc/skel/.local</code></td>
+        </tr>
+        <tr>
+          <td>Service</td>
+          <td>Postgres / Samba / RDP</td>
+          <td><code>/etc/</code></td>
+        </tr>
+        <tr>
+          <td>Hardware</td>
+          <td>Udev / Security Keys</td>
+          <td><code>/etc/udev/rules.d</code></td>
+        </tr>
+        <tr>
+          <td>Boot</td>
+          <td>Plymouth / Kernel</td>
+          <td><code>/usr/share/plymouth</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+    <p><a href="/">← Back to Home</a></p>
+  </body>
+</html>

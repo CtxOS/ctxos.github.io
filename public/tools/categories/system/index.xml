@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System on CTX OS Tools</title>
+    <link>https://ctxos.github.io/categories/system/</link>
+    <description>Recent content in System on CTX OS Tools</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://ctxos.github.io/categories/system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ctx-about</title>
+      <link>https://ctxos.github.io/tools/ctx-about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://ctxos.github.io/tools/ctx-about/</guid>
+      <description>&lt;h1 id=&#34;ctx-about&#34;&gt;ctx-about&lt;/h1&gt;&#xA;&lt;p&gt;Display system specifications and CTX OS branding information.&lt;/p&gt;&#xA;&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ctx-about&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Shows CTX OS version&lt;/li&gt;&#xA;&lt;li&gt;Displays system hardware information&lt;/li&gt;&#xA;&lt;li&gt;Shows hostname and uptime&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>ctx-help</title>
+      <link>https://ctxos.github.io/tools/ctx-help/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://ctxos.github.io/tools/ctx-help/</guid>
+      <description>&lt;h1 id=&#34;ctx-help&#34;&gt;ctx-help&lt;/h1&gt;&#xA;&lt;p&gt;Interactive command reference for CTX OS.&lt;/p&gt;&#xA;&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ctx-help&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;categories&#34;&gt;Categories&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;System Commands&lt;/strong&gt;: ctx-about, ctx-update, ctx-help&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Development&lt;/strong&gt;: ctx-dev-setup, Templates&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Remote Access&lt;/strong&gt;: XRDP, HyperFIDO, Public Share&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>
