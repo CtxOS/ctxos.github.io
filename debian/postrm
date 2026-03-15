@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    echo "Cleaning up CTX OS configurations..."
+    
+    # Remove the include line from PostgreSQL
+    sed -i "/ctx_postgresql.conf/d" /etc/postgresql/*/main/postgresql.conf 2>/dev/null || true
+    
+    # Disable our custom services
+    if [ -x "/usr/bin/systemctl" ]; then
+        systemctl disable ctxos-dns.service || true
+    fi
+
+    # Clean up the apt source (optional, keeps the system clean)
+    rm -f /etc/apt/sources.list.d/ctx.list
+fi
+
+#DEBHELPER#

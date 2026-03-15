@@ -1,0 +1,12 @@
+baseURL = 'https://ctxos.github.io/'
+languageCode = 'en-us'
+title = 'CTX OS Tools'
+
+[taxonomies]
+  category = "categories"
+
+[build]
+  writeStats = true
+
+[frontMatter]
+  expose = ["search_placeholder", "subheading"]

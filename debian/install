@@ -1,0 +1,7 @@
+# System Commands
+bin/ctx-about                                  usr/bin/
+bin/ctx-dev-setup                              usr/bin/
+bin/ctx-help                                   usr/bin/
+
+# Branding & Documentation
+usr/share/ctxos/ascii-logo.txt                 usr/share/ctxos/

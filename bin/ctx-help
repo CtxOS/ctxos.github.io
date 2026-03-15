@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Colors for better readability
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}========================================${NC}"
+echo -e "       ${CYAN}CTX OS COMMAND REFERENCE${NC}"
+echo -e "${BLUE}========================================${NC}"
+echo ""
+
+cat << EOF
+${GREEN}SYSTEM COMMANDS${NC}
+  ctx-about       Display system specs and CTX OS branding.
+  ctx-update      Check for OS layer and repository updates.
+  ctx-help        Show this help manual.
+
+${GREEN}DEVELOPMENT${NC}
+  ctx-dev-setup   Install VS Code, Docker, and core dev tools.
+  Templates/      Right-click in File Manager (Dolphin/Thunar) 
+                  to create files for 25+ languages.
+
+${GREEN}REMOTES & ACCESS${NC}
+  XRDP            Optimized for low-latency remote desktop.
+  HyperFIDO       Hardware U2F keys are auto-recognized (plug & play).
+  Public Share    Access shared files at /home/public.
+
+${GREEN}SHELL CUSTOMIZATION${NC}
+  Echo Colors     Active in Terminal, Vim, and KDE apps.
+  Fish/Zsh        Pre-configured with CTX environment variables.
+
+${BLUE}========================================${NC}
+For more info, visit: https://ctxos.github.io
+EOF

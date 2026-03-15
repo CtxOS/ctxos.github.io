@@ -1,41 +1,19 @@
-#!/usr/bin/env bash
-# remote-install.sh - One-line installer for users
+#!/bin/bash
 set -e
 
-# --- Configuration (User should update these) ---
-REPO_DOMAIN="ctxos.github.io"
-KEY_URL="https://${REPO_DOMAIN}/ctxos.asc"
-REPO_URL="https://${REPO_DOMAIN}"
-DISTRO="bookworm"
-COMPONENT="main"
-# ------------------------------------------------
+echo "Setting up CTX OS Repository..."
 
-log() { echo -e "\033[0;32m[INSTALL]\033[0m $1"; }
+# Install dependencies
+sudo apt-get update && sudo apt-get install -y curl gpg
 
-if [[ $EUID -ne 0 ]]; then
-   echo "Please run as root (sudo)"
-   exit 1
-fi
+# Download and install the GPG key
+curl -sL https://ctxos.github.io/ctxos-archive-key.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/ctxos-archive-key.gpg > /dev/null
 
-check_command() {
-    if ! command -v "$1" &> /dev/null; then
-        echo "Error: Required command not found: $1"
-        exit 1
-    fi
-}
+# Add the sources list
+echo "deb [signed-by=/usr/share/keyrings/ctxos-archive-key.gpg] https://ctxos.github.io/debian bookworm main" | sudo tee /etc/apt/sources.list.d/ctx.list
 
-check_command "curl"
-check_command "gpg"
+# Update and install
+sudo apt-get update
+sudo apt-get install -y ctxos-core
 
-log "Downloading distribution GPG key..."
-curl -fsSL "$KEY_URL" | gpg --dearmor -o /usr/share/keyrings/ctxos.gpg
-
-log "Adding repository to sources..."
-echo "deb [signed-by=/usr/share/keyrings/ctxos.gpg] $REPO_URL $DISTRO $COMPONENT" \
-    > /etc/apt/sources.list.d/ctxos.list
-
-log "Updating package lists..."
-apt-get update
-
-log "✅ CtxOS repository is now active."
-log "You can now run: apt install ctxos-core"
+echo "CTX OS Core Layer successfully installed!"

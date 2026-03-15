@@ -1,36 +1,48 @@
-# Build outputs
-build/
-dist/
-build_output/
-*.deb
-*.iso
-*.log
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Node.js
-node_modules/
-pnpm-lock.yaml
-.next/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Python
-__pycache__/
-*.pyc
-*.egg-info/
-.venv/
-venv/
-.pytest_cache/
-htmlcov/
-.coverage
+# testing
+/coverage
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
+# next.js
+/.next/
+/out/
 
-# OS
+# production
+/build
+/_build
+
+# misc
 .DS_Store
-Thumbs.db
+*.pem
+install-state.gz
 
-# Local config
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
 .env.local
-config.local.json
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+.vscode
+
+# idea
+.idea
+
+rss.xml
+
+# reprepro
+debian/db/
+debian/conf/*.tmp
+*.buildinfo
+*.changes
