@@ -1,0 +1,9 @@
+Origin: CtxOS
+Label: CtxOS
+Suite: noble
+Codename: noble
+Version: 1.0
+Architectures: amd64 arm64 source
+Components: main
+Description: CtxOS Debian package repository
+SignWith: yes

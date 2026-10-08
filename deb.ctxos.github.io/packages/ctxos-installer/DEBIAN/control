@@ -1,0 +1,8 @@
+Package: ctxos-installer
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: all
+Maintainer: CtxOS Team <maintainers@ctxos.github.io>
+Description: CtxOS system installer
+ Graphical and command-line installers for CtxOS.

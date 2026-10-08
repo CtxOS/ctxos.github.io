@@ -2,6 +2,11 @@
 
 Modular Linux Framework, Installer, and Distro Toolkit.
 
+## Websites
+
+- https://ctxos.github.io/ — official website, documentation, installation guides, ISO downloads and release information
+- https://deb.ctxos.github.io/ — signed APT package repository (see `deb.ctxos.github.io/`)
+
 ## Features
 - **Modular Framework**: Build modern distributions from pre-engineered modules.
 - **Enterprise-Grade Software Center**: DBus-backed management for APT, Profiles, and Flatpaks.
@@ -13,7 +18,8 @@ Modular Linux Framework, Installer, and Distro Toolkit.
 
 ### 🌐 Project Showcase
 CtxOS provides a premium landing page template for your distribution.
-To view the showcase, simply open `website/index.html` in your browser. It includes:
+To view the showcase, open `website/index.html` in your browser, or visit
+`/website/` on the deployed site. It includes:
 - Modern glassmorphism design.
 - Animated feature showcases.
 - Documentation and release orchestration highlights.
@@ -50,13 +56,22 @@ make iso
 make debs
 ```
 
+### Building Documentation
+```bash
+make docs
+```
+
 ## Repository Structure
-- `docs/`: Detailed documentation.
+- `docs/`: Detailed documentation (Markdown sources, compiled to HTML for GitHub Pages).
 - `modules/`: Individual system components (APT, Core, UI, etc.).
 - `live-iso/`: OS build environment.
 - `packaging/`: Logic for building meta-packages.
 - `recovery/`: System check, rescue tools, and snapshot utilities.
 - `scripts/`: Shared library functions for hunters.
+- `assets/`: Website stylesheets and media.
+- `install/`, `releases/`, `iso/`: Website sections.
+- `website/`: Project showcase template (served at `/website/`).
+- `deb.ctxos.github.io/`: Standalone reprepro-based APT repository, ready to split into its own GitHub Pages repository.
 
 ## License
 MIT

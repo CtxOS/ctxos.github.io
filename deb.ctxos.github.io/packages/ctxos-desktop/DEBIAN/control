@@ -1,0 +1,8 @@
+Package: ctxos-desktop
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: all
+Maintainer: CtxOS Team <maintainers@ctxos.github.io>
+Description: CtxOS desktop environment meta-package
+ Default CtxOS desktop session, panel and applications.

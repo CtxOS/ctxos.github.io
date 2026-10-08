@@ -1,0 +1,26 @@
+name: Validate CtxOS Packages
+
+on:
+  pull_request:
+    paths:
+      - "packages/**"
+      - "conf/**"
+      - "scripts/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev reprepro
+
+      - name: Build packages
+        run: ./scripts/build-packages.sh
+
+      - name: Verify packages
+        run: ./scripts/verify.sh

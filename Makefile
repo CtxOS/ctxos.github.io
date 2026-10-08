@@ -1,6 +1,6 @@
 PROFILE ?= base
 
-.PHONY: all install uninstall iso debs clean help
+.PHONY: all install uninstall iso debs docs clean help
 
 all: install
 
@@ -21,6 +21,9 @@ iso:
 debs:
 	@bash packaging/build-debs.sh
 
+docs:
+	@python3 scripts/build-docs.py
+
 clean:
 	@rm -rf build dist
 	@find modules -name "*.log" -delete
@@ -34,4 +37,5 @@ help:
 	@echo "  make module-<name>   Install a specific module"
 	@echo "  make iso             Build live ISO"
 	@echo "  make debs            Build .deb packages"
+	@echo "  make docs            Build documentation HTML"
 	@echo "  make clean           Clean build artifacts"

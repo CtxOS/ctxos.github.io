@@ -1,0 +1,51 @@
+name: Deploy CtxOS Website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build documentation
+        run: python3 scripts/build-docs.py
+
+      - name: Stage site
+        run: |
+          mkdir -p public
+          rsync -a \
+            --exclude '.git/' \
+            --exclude 'public/' \
+            --exclude 'node_modules/' \
+            --exclude 'build_output/' \
+            --exclude '__pycache__/' \
+            --exclude '*.pyc' \
+            ./ public/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

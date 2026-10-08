@@ -1,0 +1,14 @@
+.DS_Store
+*.deb
+*.changes
+*.buildinfo
+*.dsc
+*.tar.gz
+*.tar.xz
+
+gnupg/
+private/
+work/
+build/
+public/dists/
+public/pool/
