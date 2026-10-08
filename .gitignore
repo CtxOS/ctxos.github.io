@@ -15,10 +15,8 @@ __pycache__/
 # Build artifacts
 .build/
 chroot/
-config/
 live-iso/.build/
 live-iso/chroot/
-live-iso/config/
 software-center/debian/.debhelper/
 software-center/debian/debhelper-build-stamp
 software-center/debian/files

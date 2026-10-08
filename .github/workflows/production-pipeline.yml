@@ -38,7 +38,7 @@ jobs:
 
       - name: Run Master Pipeline
         env:
-          SKIP_ISO: "true" # ISO building usually requires custom runners or nested virt
+          SKIP_ISO: "true"
         run: |
           chmod +x scripts/*.sh
           ./scripts/pipeline-master.sh ${{ github.event.inputs.release_type || 'patch' }}
@@ -55,3 +55,25 @@ jobs:
       - name: Verify Distribution Health
         run: |
           ./scripts/validate-artifacts.sh
+
+  build-iso:
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install live-build
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y live-build
+
+      - name: Build ISO
+        run: |
+          cd live-iso
+          lb build
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: ctxos-iso-${{ github.sha }}
+          path: live-iso/*.iso
