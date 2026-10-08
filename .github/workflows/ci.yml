@@ -2,15 +2,15 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ dev ]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install ShellCheck
         run: sudo apt-get install -y shellcheck
       - name: Run ShellCheck
@@ -40,9 +40,9 @@ jobs:
             echo "No signing key available, skipping repository import"
             exit 0
           fi
-          mkdir -p /tmp/ctxos-gpg
+          export GNUPGHOME=$(mktemp -d)
+          chmod 700 "$GNUPGHOME"
           echo "$CTXOS_ARCHIVE_PRIVATE_KEY" | gpg --batch --import
-          export GNUPGHOME=/tmp/ctxos-gpg
           cd deb.ctxos.github.io
           for deb in ../packaging/build/debs/*.deb; do
             reprepro -b . includedeb noble "$deb"
