@@ -16,6 +16,6 @@ if [ "${PROFILE:-base}" != "rescue" ]; then
     if [ -f "files/debian-base-kit.list" ]; then
         install_file "files/debian-base-kit.list" /etc/apt/sources.list.d/debian-base-kit.list
     fi
-    apt-get update
+    apt-get update || warn "apt-get update failed; continuing with existing package lists"
 fi
 

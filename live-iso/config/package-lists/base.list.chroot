@@ -1,11 +1,12 @@
-sudo
-zsh
-git
-curl
 ca-certificates
-network-manager
+curl
+git
 live-boot
 live-config
 live-tools
+network-manager
 pciutils
+software-center
+sudo
 usbutils
+zsh

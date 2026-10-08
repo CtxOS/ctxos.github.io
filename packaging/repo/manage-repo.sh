@@ -11,6 +11,11 @@ ROOT_DIR="/var/lib/aptly"
 
 log() { echo -e "\033[0;32m[REPO]\033[0m $1"; }
 
+if ! command -v aptly &> /dev/null; then
+    echo "Error: aptly is not installed. Install it from https://www.aptly.info/" >&2
+    exit 1
+fi
+
 usage() {
     echo "Usage: $0 {init|add|publish|cleanup}"
     exit 1

@@ -73,5 +73,9 @@ make docs
 - `website/`: Project showcase template (served at `/website/`).
 - `deb.ctxos.github.io/`: Standalone reprepro-based APT repository, ready to split into its own GitHub Pages repository.
 
+## Related repositories
+
+- `CtxOS/ctxos` — Ubuntu live-build ISO system that produces official CtxOS images from the `deb.ctxos.github.io` packages.
+
 ## License
 MIT
