@@ -5,7 +5,7 @@ source "$SCRIPT_DIR/../scripts/log.sh"
 
 PACKAGES=("debian-base-core" "debian-base-desktop" "debian-base-tools" "ctxos-keyring" "ctxos-repos" "ctxos-release")
 
-mkdir -p build/debs
+mkdir -p "$SCRIPT_DIR/build/debs"
 
 for pkg in "${PACKAGES[@]}"; do
     log "▶ Building $pkg..."
