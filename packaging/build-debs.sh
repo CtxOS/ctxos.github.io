@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
-source ../scripts/log.sh
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/../scripts/log.sh"
 
 PACKAGES=("debian-base-core" "debian-base-desktop" "debian-base-tools")
 

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/../scripts/log.sh"
+
 # Requirement check: live-build
 if ! command -v lb &> /dev/null; then
     echo "Error: live-build not found. Please install it first (apt install live-build)."
@@ -8,8 +11,8 @@ if ! command -v lb &> /dev/null; then
 fi
 
 # Prepare custom packages (like software-center)
-chmod +x ./prepare-custom-packages.sh
-./prepare-custom-packages.sh
+chmod +x "$SCRIPT_DIR/prepare-custom-packages.sh"
+"$SCRIPT_DIR/prepare-custom-packages.sh"
 
 lb clean
 lb config \
