@@ -1,0 +1,5 @@
+Types: deb
+URIs: https://deb.ctxos.github.io/
+Suites: noble
+Components: main
+Signed-By: /usr/share/keyrings/ctxos-archive-keyring.gpg

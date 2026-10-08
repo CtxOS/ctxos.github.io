@@ -1,0 +1,19 @@
+{
+  "status": "ok",
+  "repository": "ctxos",
+  "distribution": "noble",
+  "architectures": ["amd64", "arm64"],
+  "components": ["main"],
+  "packages": [
+    "ctxos-base",
+    "ctxos-branding",
+    "ctxos-desktop",
+    "ctxos-installer",
+    "ctxos-keyring",
+    "ctxos-release",
+    "ctxos-repos"
+  ],
+  "signed": true,
+  "key_fingerprint": "9B408D5C45A2F0A3D310A58DD331A9616D78B67E",
+  "last_updated": "2026-10-08T20:12:15Z"
+}

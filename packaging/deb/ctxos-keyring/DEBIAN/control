@@ -1,0 +1,9 @@
+Package: ctxos-keyring
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: CtxOS Team <maintainers@ctxos.github.io>
+Description: CtxOS archive signing key
+ Contains the GPG public key used to verify packages and
+ repository metadata from the CtxOS APT repository.

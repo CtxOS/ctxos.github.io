@@ -1,0 +1,26 @@
+# CtxOS Code Owners
+# These owners are required for review on all pull requests.
+
+# Default owners
+* @CtxOS/maintainers
+
+# APT repository
+/deb.ctxos.github.io/ @CtxOS/repository-team
+
+# Packaging
+/packaging/ @CtxOS/packaging-team
+/modules/ @CtxOS/packaging-team
+
+# Website
+/website/ @CtxOS/web-team
+/public/ @CtxOS/web-team
+/docs/ @CtxOS/docs-team
+
+# CI/CD
+/.github/ @CtxOS/ci-team
+/scripts/ @CtxOS/ci-team
+
+# ISO build
+/live-iso/ @CtxOS/iso-team
+/profiles/ @CtxOS/iso-team
+/config/ @CtxOS/iso-team

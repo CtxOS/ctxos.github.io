@@ -1,0 +1,58 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: CtxOS
+Label: CtxOS
+Suite: noble
+Codename: noble
+Version: 1.0
+Date: Thu, 08 Oct 2026 20:12:15 UTC
+Architectures: amd64 arm64
+Components: main
+Description: CtxOS Debian package repository
+MD5Sum:
+ aeb9290250a70e1e9e6162e317f076ad 3123 main/binary-amd64/Packages
+ 94c8f86915eb3aea7eb88b0e9b0970d3 1232 main/binary-amd64/Packages.gz
+ a9b7c62e71c4fd0f8cc5925c1ddc4a13 136 main/binary-amd64/Release
+ aeb9290250a70e1e9e6162e317f076ad 3123 main/binary-arm64/Packages
+ 94c8f86915eb3aea7eb88b0e9b0970d3 1232 main/binary-arm64/Packages.gz
+ 6f38a1d02cadce00b9164f9c60cda6a5 136 main/binary-arm64/Release
+ d41d8cd98f00b204e9800998ecf8427e 0 main/source/Sources
+ 7029066c27ac6f5ef18d660d5741979a 20 main/source/Sources.gz
+ 2f85670e42704f8bcb338035df5f8f57 137 main/source/Release
+SHA1:
+ da3ea80b21fb92666eda5fcc142d11528514de9d 3123 main/binary-amd64/Packages
+ eccb34d43a1c988e74189f5d45596dab29afd3ba 1232 main/binary-amd64/Packages.gz
+ 97e919770316b6336fe56a31db407494b41cc07c 136 main/binary-amd64/Release
+ da3ea80b21fb92666eda5fcc142d11528514de9d 3123 main/binary-arm64/Packages
+ eccb34d43a1c988e74189f5d45596dab29afd3ba 1232 main/binary-arm64/Packages.gz
+ 688078c23780eab60c08bf2d8d34a3b88b152232 136 main/binary-arm64/Release
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/source/Sources
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/source/Sources.gz
+ e6791b006ad1b1430b6e9c62587b6a122b3e22f3 137 main/source/Release
+SHA256:
+ 200df3622c8edc5580de5725442e1ad1c495da982b531fb2f5bd182982a7d33d 3123 main/binary-amd64/Packages
+ 35512d50a3bb848b9a9ab1fd3de66287e31bf9e3d593770daec2ffb410a863c5 1232 main/binary-amd64/Packages.gz
+ b945717b096b4148fd243ae8d261307a43f5280ce2a945ac2c048e4e703a517a 136 main/binary-amd64/Release
+ 200df3622c8edc5580de5725442e1ad1c495da982b531fb2f5bd182982a7d33d 3123 main/binary-arm64/Packages
+ 35512d50a3bb848b9a9ab1fd3de66287e31bf9e3d593770daec2ffb410a863c5 1232 main/binary-arm64/Packages.gz
+ 49af734851ff82905f19faeef1777d8604a945cbfd2b29dca718f4f48ca17bee 136 main/binary-arm64/Release
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/source/Sources
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/source/Sources.gz
+ 6895ad4d8c1283b02103b480da12cea031aeddcf2acdc91194fdad26a07e74ae 137 main/source/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEDlzyDKLIPYaJl5keNNF/gtd/WX0FAmrH+R8ACgkQNNF/gtd/
+WX1Ilw//Z4zQtbqywYnJ69cff7rlPb+fA683tkJ4TnpC+vSLmBj66JFEPI0Kgzqu
+eqrQfc6CxXOQ3qFfYdFlO1oWnYeG0rA68ThlMcxMXTm2cGPz+JUbW7FwZzbgWmYF
+yg+jJ0vjNuncgO0wRxij01GxJINcG1PiI6zso8PlHVEyxtdLUh7RBuV37E8F0Np/
+KBEdi7c9m4d4270nGQyIJPaDVav4u8kDJuNy/eYItdwp7wf6ZSWi91wLbMpn2SQA
+9P0p4LoluMgiAUX16OD4rYux88jaYvxzSyGWM0engafE0tfz2wjJX4Os0DkNiGHa
+VQXDHglBblUcpdZJw3wc3OFE8XeKZifqGOvYe3CrVn2d2RyftUZ7SmQmXiOWlSIo
+7Abc0yJZdc/0lOr/U8iz8bviX6Q88W577vA8UpI6aGEBaHERhdLmILgJnBK7VyUn
+VEznApn88vJ8EfkdyoEfdhq4atcu5JqtxMGJbZtmdekZWd5xXDC4Lzj1QlxEdex+
+kSF7GMyB2j/RkXfREOd0NaaUVjyBtbF+0sS3m91tqdoM5/BPWPriYs3O8oXKl1LT
+VUzR7hFL+4c1aIXUViTOkyGXVXbQPAJKep5Sri1T/gn6cTRer4891/9XDBs2Dp9j
+HPAHAnb7WHieWRnnGBPijcw/FgWeMrtzcyB311nQJaBMt34rLhs=
+=IvEX
+-----END PGP SIGNATURE-----

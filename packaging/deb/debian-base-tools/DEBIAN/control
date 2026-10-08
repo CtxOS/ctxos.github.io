@@ -1,5 +1,7 @@
 Package: debian-base-tools
 Version: 1.0.0
+Section: base
+Priority: optional
 Architecture: all
 Maintainer: Debian Base Kit Maintainers
 Depends: htop, vim, fastfetch, tree, jq

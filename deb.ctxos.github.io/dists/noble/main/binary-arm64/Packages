@@ -1,0 +1,90 @@
+Package: ctxos-keyring
+Version: 1.0.0
+Architecture: all
+Maintainer: CtxOS Team <maintainers@ctxos.github.io>
+Priority: optional
+Section: utils
+Filename: pool/main/c/ctxos-keyring/ctxos-keyring_1.0.0_all.deb
+Size: 3460
+SHA256: b4e34d968e28e3c3c8d4f03d9dd077f8dbc074e6594aeb88e822511dd693b180
+SHA1: 709ee974d6692219bf3da861668c8bb0e17aa4bd
+MD5sum: 81570e516c3b344e45fad1d357d2f93f
+Description: CtxOS archive signing key
+ Contains the GPG public key used to verify packages and
+ repository metadata from the CtxOS APT repository.
+
+Package: ctxos-release
+Version: 1.0.0
+Architecture: all
+Maintainer: CtxOS Team <maintainers@ctxos.github.io>
+Depends: ctxos-base
+Priority: optional
+Section: utils
+Filename: pool/main/c/ctxos-release/ctxos-release_1.0.0_all.deb
+Size: 792
+SHA256: 06b7a2b3296c30c5c5ef56446839f82fdafa1cbed74313df64f3f3eb11814045
+SHA1: 9d145447c9a98c3c44e5cc9db3669e505d3305db
+MD5sum: 5db5a8c000a95e8c43e476207c781e42
+Description: CtxOS release information
+ Provides CtxOS release metadata and os-release overrides.
+
+Package: ctxos-repos
+Version: 1.0.0
+Architecture: all
+Maintainer: CtxOS Team <maintainers@ctxos.github.io>
+Depends: ctxos-keyring
+Priority: optional
+Section: utils
+Filename: pool/main/c/ctxos-repos/ctxos-repos_1.0.0_all.deb
+Size: 720
+SHA256: 85641775ed82a9f23d6263341b31b0a21a8286a0196ef326b306da32968764fc
+SHA1: feb446288c4997478c6b7ffbd0239e1914ae05cb
+MD5sum: 74958f88c518d08ae881b6ac430dd572
+Description: CtxOS APT repository configuration
+ Installs the CtxOS APT repository source list.
+
+Package: debian-base-core
+Version: 1.0.0
+Architecture: all
+Maintainer: Debian Base Kit Maintainers
+Depends: sudo, curl, git, ca-certificates
+Priority: optional
+Section: base
+Filename: pool/main/d/debian-base-core/debian-base-core_1.0.0_all.deb
+Size: 628
+SHA256: d979ce3ab54d41844268d5d16a7132463c0ce85b0220c23ab261c1d1a86fcafa
+SHA1: 2553454fc97018e535725afbbf2d6b57d541b246
+MD5sum: 9ab0d0dce9b30ef5195345ecd4ac0b49
+Description: Debian Base Core System
+ This package installs the essentials for the Debian Base Kit.
+
+Package: debian-base-desktop
+Version: 1.0.0
+Architecture: all
+Maintainer: Debian Base Kit Maintainers
+Depends: xorg, desktop-base, network-manager-gnome
+Priority: optional
+Section: base
+Filename: pool/main/d/debian-base-desktop/debian-base-desktop_1.0.0_all.deb
+Size: 650
+SHA256: 35af7c800d96c7e12dcba20f22bb1146e1ed74b1aacaf2a47bf39c847c250b14
+SHA1: d4aaf39775beaee18843a5f6cb0ea8828f1aabb0
+MD5sum: 37dbf12fa464b872cc0e971208fb06b2
+Description: Debian Base Desktop System
+ This package installs the desktop environment components for the Debian Base Kit.
+
+Package: debian-base-tools
+Version: 1.0.0
+Architecture: all
+Maintainer: Debian Base Kit Maintainers
+Depends: htop, vim, fastfetch, tree, jq
+Priority: optional
+Section: base
+Filename: pool/main/d/debian-base-tools/debian-base-tools_1.0.0_all.deb
+Size: 638
+SHA256: a8ccae89603509bfd88d706e464ae17af401632409a715432bbcb907c4cc61e1
+SHA1: 21d75e88f12534051a1e24606963e6c6f16cddd3
+MD5sum: d13a608f3eeded9eb08966e19c425833
+Description: Debian Base System Tools
+ This package installs a curated set of system tools for the Debian Base Kit.
+

@@ -10,6 +10,23 @@ __pycache__/
 *.changes
 *.buildinfo
 *.dsc
+*.build
+
+# Build artifacts
+.build/
+chroot/
+config/
+live-iso/.build/
+live-iso/chroot/
+live-iso/config/
+software-center/debian/.debhelper/
+software-center/debian/debhelper-build-stamp
+software-center/debian/files
+software-center/debian/*.debhelper
+software-center/debian/software-center/
+software-center/debian/substvars
+software-center_*.build
+deb.ctxos.github.io/db/
 
 # Website staging directory (GitHub Pages workflow)
 /public/

@@ -1,0 +1,9 @@
+Package: ctxos-release
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: CtxOS Team <maintainers@ctxos.github.io>
+Depends: ctxos-base
+Description: CtxOS release information
+ Provides CtxOS release metadata and os-release overrides.

@@ -1,0 +1,12 @@
+PRETTY_NAME="CtxOS 1.0"
+NAME="CtxOS"
+VERSION_ID="1.0"
+VERSION="1.0 (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ctxos
+ID_LIKE=ubuntu debian
+HOME_URL="https://ctxos.github.io/"
+SUPPORT_URL="https://ctxos.github.io/docs/"
+BUG_REPORT_URL="https://github.com/CtxOS/ctxos.github.io/issues"
+PRIVACY_POLICY_URL="https://ctxos.github.io/docs/privacy"
+UBUNTU_CODENAME=noble

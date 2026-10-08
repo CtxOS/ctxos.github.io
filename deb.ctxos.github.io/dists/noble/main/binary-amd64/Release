@@ -1,0 +1,7 @@
+Archive: noble
+Version: 1.0
+Component: main
+Origin: CtxOS
+Label: CtxOS
+Architecture: amd64
+Description: CtxOS Debian package repository

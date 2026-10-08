@@ -20,8 +20,31 @@ jobs:
   build-packages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Install Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y reprepro lintian
       - name: Build Meta-packages
         run: |
           chmod +x packaging/build-debs.sh
           ./packaging/build-debs.sh
+      - name: Lint Packages
+        run: |
+          lintian packaging/build/debs/*.deb --info --display-info || true
+      - name: Import into Repository
+        env:
+          CTXOS_ARCHIVE_PRIVATE_KEY: ${{ secrets.CTXOS_ARCHIVE_PRIVATE_KEY }}
+        run: |
+          if [ -z "$CTXOS_ARCHIVE_PRIVATE_KEY" ]; then
+            echo "No signing key available, skipping repository import"
+            exit 0
+          fi
+          mkdir -p /tmp/ctxos-gpg
+          echo "$CTXOS_ARCHIVE_PRIVATE_KEY" | gpg --batch --import
+          export GNUPGHOME=/tmp/ctxos-gpg
+          cd deb.ctxos.github.io
+          for deb in ../packaging/build/debs/*.deb; do
+            reprepro -b . includedeb noble "$deb"
+          done
+          reprepro -b . export noble

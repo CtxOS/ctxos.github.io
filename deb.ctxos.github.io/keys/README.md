@@ -1,39 +1,27 @@
 # CtxOS Archive Signing Key
 
-The repository must be signed with a dedicated CtxOS archive key.
+## Current Key
 
-Generate a key in a secure environment:
+- **Fingerprint:** `9B408D5C45A2F0A3D310A58DD331A9616D78B67E`
+- **Key ID:** `34D17F82D77F597D`
+- **Type:** RSA 4096 (signing)
+- **Identity:** CtxOS Archive Signing <archive@ctxos.github.io>
+- **Expires:** 2028-10-08
 
-```bash
-gpg --full-generate-key
-```
+## Files
 
-Recommended:
+- `ctxos-archive-keyring.asc` — ASCII-armored public key
+- `ctxos-archive-keyring.gpg` — Binary keyring (installed by `ctxos-keyring` package)
 
-- RSA 4096
-- signing capability
-- dedicated CtxOS archive identity
-- long expiration or managed rotation
+## Private Key
 
-Export the public key:
+The private key is stored as the `CTXOS_ARCHIVE_PRIVATE_KEY` GitHub Actions secret.
+It is never committed to this repository.
 
-```bash
-gpg \
-  --armor \
-  --export YOUR_KEY_ID \
-  > ctxos-archive-keyring.asc
-```
+## Key Rotation
 
-Convert to a binary keyring:
-
-```bash
-gpg \
-  --dearmor \
-  < ctxos-archive-keyring.asc \
-  > ctxos-archive-keyring.gpg
-```
-
-The private key must be stored outside GitHub Pages.
-
-Use the `CTXOS_ARCHIVE_PRIVATE_KEY` GitHub Actions secret or a
-dedicated signing environment.
+1. Generate a new key with signing capability
+2. Publish the new public key in `ctxos-keyring`
+3. Sign repository metadata with both keys during transition
+4. Remove old key after all clients have updated
+5. Publish a security advisory
